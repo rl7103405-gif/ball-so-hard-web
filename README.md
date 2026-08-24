@@ -8,6 +8,12 @@ de Puebla y su academia **Ball So Hard Development** (6 a 17 años).
 > enseñarlo hay que sustituir las fotos y confirmar los datos marcados en amarillo
 > dentro de la página (`POR CONFIRMAR`).
 
+## Estado
+
+Marcado como **muestra no oficial**: banda amarilla arriba y `noindex` para que
+Google no lo liste. Ver `PASOS.md` para publicarlo y para quitar ambas cosas
+cuando el cliente autorice.
+
 ## Cómo verlo
 
 Abre `index.html` con doble clic. No hay que instalar nada — es HTML, CSS y JS puros,
