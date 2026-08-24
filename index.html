@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ball So Hard — Baloncesto 3x3 en Puebla | Equipo profesional y academia 6–17 años</title>
+  <meta name="description" content="Ball So Hard: el primer equipo profesional de baloncesto 3x3 de Puebla, campeón nacional y representante de México. Academia Ball So Hard Development para niñas y niños de 6 a 17 años.">
+  <meta property="og:title" content="Ball So Hard — El proceso no se detiene">
+  <meta property="og:description" content="Equipo profesional de 3x3 y academia de desarrollo en Puebla. De la duela local a los torneos internacionales.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#08090A">
+  <!-- BORRADOR: que los buscadores no lo indexen. Quitar al publicar el sitio oficial. -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-icono.png">
+
+  <!-- Las animaciones de aparición solo se activan si hay JavaScript;
+       sin JS, todo el contenido es visible de inmediato -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    /* ============================================================
+       BALL SO HARD — negro / verde neón / blanco
+       Toda la identidad vive en estas variables: cambiarlas cambia
+       el sitio completo.
+       ============================================================ */
+    :root {
+      --verde: #A3FF12;          /* verde neón de la marca */
+      --verde-oscuro: #6FBF00;
+      --verde-tenue: rgba(163, 255, 18, .14);
+      --negro: #08090A;          /* fondo principal */
+      --carbon: #101113;         /* fondo alterno entre secciones */
+      --grafito: #191B1E;        /* tarjetas */
+      --blanco: #FFFFFF;
+      --gris: #B5B7BD;           /* texto secundario */
+      --oro: #E8B54A;            /* medallas y distintivos */
+      --verde-wa: #25D366;
+      --fuente-display: 'Archivo Black', Impact, sans-serif;
+      --fuente-cuerpo: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+      --radio: 14px;
+      --sombra-verde: 0 12px 40px -12px rgba(163, 255, 18, .40);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; overflow-x: clip; }
+
+    body {
+      background: var(--negro);
+      color: var(--blanco);
+      font-family: var(--fuente-cuerpo);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    section { position: relative; padding: 88px 0; scroll-margin-top: 72px; }
+
+    .contenedor { width: min(1120px, 92%); margin: 0 auto; }
+
+    /* ---------- Tipografía ---------- */
+    h1, h2, h3, .display {
+      font-family: var(--fuente-display);
+      font-weight: 400;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      line-height: 1.06;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--verde);
+      font-weight: 800;
+      font-size: .8rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .kicker::before {
+      content: "";
+      width: 34px; height: 3px;
+      background: var(--verde);
+      display: inline-block;
+    }
+
+    .titulo-seccion { font-size: clamp(1.9rem, 5vw, 3.1rem); margin-bottom: 14px; }
+    .titulo-seccion em { color: var(--verde); font-style: normal; }
+    .sub-seccion { color: var(--gris); max-width: 660px; font-size: 1.02rem; }
+
+    /* ---------- Animaciones de scroll (solo con JS activo) ---------- */
+    html.js .revelar {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    html.js .revelar.visible { opacity: 1; transform: none; }
+    html.js .revelar[data-delay="1"] { transition-delay: .12s; }
+    html.js .revelar[data-delay="2"] { transition-delay: .24s; }
+    html.js .revelar[data-delay="3"] { transition-delay: .36s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      html.js .revelar { opacity: 1; transform: none; transition: none; }
+      .cinta-track { animation: none !important; }
+      .hero-logo-wrap img { animation: none !important; }
+    }
+
+    /* ---------- Botones ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 30px;
+      font-family: var(--fuente-cuerpo);
+      font-weight: 800;
+      font-size: .95rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn:focus-visible { outline: 3px solid var(--blanco); outline-offset: 3px; }
+    .btn-verde { background: var(--verde); color: #0C1400; box-shadow: var(--sombra-verde); }
+    .btn-verde:hover { transform: translateY(-3px); background: #B8FF45; }
+    .btn-borde { background: transparent; color: var(--blanco); border-color: rgba(255,255,255,.45); }
+    .btn-borde:hover { transform: translateY(-3px); border-color: var(--blanco); background: rgba(255,255,255,.06); }
+    .btn-wa { background: var(--verde-wa); color: #062e16; }
+    .btn-wa:hover { transform: translateY(-3px); background: #33e074; }
+
+    /* ============================================================
+       NAVEGACIÓN
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 90;
+      background: rgba(8,9,10,.84);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .nav-marca { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--blanco); }
+    .nav-marca img { height: 36px; width: auto; }
+    .nav-marca .nombre {
+      font-family: var(--fuente-display);
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+    .nav-marca .nombre span { color: var(--verde); }
+    .nav-links { display: flex; align-items: center; gap: clamp(12px, 1.7vw, 24px); list-style: none; }
+    .nav-links a {
+      color: var(--gris);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .86rem;
+      letter-spacing: .04em;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--blanco); }
+    .nav-cta {
+      background: var(--verde);
+      color: #0C1400 !important;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-weight: 800 !important;
+    }
+    .nav-cta:hover { background: #B8FF45; }
+
+    .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+    .nav-burger span {
+      display: block;
+      width: 26px; height: 3px;
+      background: var(--blanco);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    @media (max-width: 940px) {
+      .nav-burger { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 68px; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--carbon);
+        border-bottom: 2px solid var(--verde);
+        padding: 8px 0 16px;
+        transform: translateY(-140%);
+        transition: transform .35s ease;
+        z-index: 89;
+      }
+      .nav-links.abierto { transform: translateY(0); }
+      .nav-links li { text-align: center; }
+      .nav-links a { display: block; padding: 14px; font-size: 1rem; }
+      .nav-cta { margin: 10px 24px 0; }
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 130px 0 90px;
+      background:
+        radial-gradient(1200px 600px at 78% -10%, rgba(163,255,18,.20), transparent 60%),
+        radial-gradient(800px 500px at -10% 110%, rgba(163,255,18,.10), transparent 60%),
+        var(--negro);
+      overflow: hidden;
+    }
+    /* Líneas de cancha decorativas */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 130%, transparent 340px, rgba(255,255,255,.05) 341px, rgba(255,255,255,.05) 343px, transparent 344px),
+        radial-gradient(circle at 50% 130%, transparent 480px, rgba(255,255,255,.035) 481px, rgba(255,255,255,.035) 483px, transparent 484px),
+        linear-gradient(90deg, transparent calc(50% - 1px), rgba(255,255,255,.045) 50%, transparent calc(50% + 1px));
+      pointer-events: none;
+    }
+    /* FOTO DE FONDO: sube assets/hero.jpg y quita el comentario del <img> */
+    .hero-foto {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .28;
+      filter: grayscale(30%) contrast(1.1);
+    }
+    .hero-contenido {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--verde-tenue);
+      border: 1px solid rgba(163,255,18,.5);
+      color: var(--verde);
+      font-weight: 700;
+      font-size: .78rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 22px;
+    }
+    .hero-eyebrow .punto {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--verde);
+      animation: pulso 1.6s infinite;
+    }
+    @keyframes pulso {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(163,255,18,.7); }
+      70% { box-shadow: 0 0 0 9px rgba(163,255,18,0); }
+    }
+    .hero h1 { font-size: clamp(2.7rem, 8.5vw, 5.2rem); line-height: .98; }
+    .hero h1 .verde { color: var(--verde); display: block; }
+    .hero .eslogan {
+      margin-top: 18px;
+      font-size: clamp(1rem, 2.3vw, 1.3rem);
+      font-weight: 700;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+    .hero .eslogan strong { color: var(--blanco); }
+    .hero-botones { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .hero-datos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 44px;
+      padding-top: 26px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .hero-dato .num { font-family: var(--fuente-display); font-size: 1.75rem; color: var(--blanco); }
+    .hero-dato .num em { color: var(--verde); font-style: normal; }
+    .hero-dato .txt {
+      font-size: .76rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+    .hero-logo-wrap { display: flex; justify-content: center; }
+    .hero-logo-wrap img {
+      width: min(330px, 80%);
+      filter: drop-shadow(0 20px 60px rgba(163,255,18,.35));
+      animation: flotar 5s ease-in-out infinite;
+    }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+    @media (max-width: 940px) {
+      .hero-contenido { grid-template-columns: 1fr; text-align: center; }
+      .hero-logo-wrap { order: -1; }
+      .hero-logo-wrap img { width: min(200px, 55%); }
+      .hero-botones, .hero-datos { justify-content: center; }
+      .hero-eyebrow { margin-inline: auto; }
+    }
+
+    /* ---------- Cinta de logros (marquee) ---------- */
+    .cinta {
+      background: var(--verde);
+      overflow: hidden;
+      padding: 13px 0;
+      transform: rotate(-1.2deg) scale(1.02);
+      border-top: 3px solid var(--negro);
+      border-bottom: 3px solid var(--negro);
+      position: relative;
+      z-index: 2;
+    }
+    .cinta-track {
+      display: flex;
+      gap: 48px;
+      white-space: nowrap;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+      font-family: var(--fuente-display);
+      font-size: .98rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #0C1400;
+    }
+    .cinta-track .sep { color: rgba(0,0,0,.4); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       NOSOTROS
+       ============================================================ */
+    .nosotros { background: var(--carbon); }
+    .nosotros-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 52px;
+      align-items: center;
+    }
+    .nosotros-texto p { color: var(--gris); margin-bottom: 16px; }
+    .nosotros-texto p strong { color: var(--blanco); }
+    .frase-central {
+      border-left: 4px solid var(--verde);
+      background: var(--verde-tenue);
+      padding: 18px 22px;
+      margin: 24px 0;
+      font-family: var(--fuente-display);
+      font-size: 1.25rem;
+      line-height: 1.25;
+      text-transform: uppercase;
+    }
+    .frase-central em { color: var(--verde); font-style: normal; }
+    .pastillas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .pastilla {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 100px;
+      padding: 9px 16px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--gris);
+    }
+    .pastilla svg { flex: none; }
+
+    /* Marco de foto con placeholder */
+    .marco-foto {
+      position: relative;
+      border-radius: var(--radio);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 30px 60px -30px rgba(0,0,0,.85);
+    }
+    .marco-foto::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 3px solid transparent;
+      border-image: linear-gradient(135deg, var(--verde), transparent 40%) 1;
+      pointer-events: none;
+    }
+    .ph {
+      aspect-ratio: 4 / 3;
+      background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,.03) 0 12px, transparent 12px 24px),
+        radial-gradient(circle at 30% 30%, rgba(163,255,18,.20), transparent 55%),
+        var(--grafito);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .ph .ph-inner { display: grid; place-items: center; gap: 10px; color: var(--gris); }
+    .ph .ph-inner span {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .ph-cuadrada { aspect-ratio: 1 / 1; }
+    .ph-baja { aspect-ratio: auto; min-height: 190px; }
+    .ph-vertical { aspect-ratio: 3 / 4; }
+
+    @media (max-width: 940px) { .nosotros-grid { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       QUÉ ES EL 3x3
+       ============================================================ */
+    .tresxtres { background: var(--negro); }
+    .grid-reglas {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-top: 42px;
+    }
+    .tarjeta-regla {
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      border-top: 4px solid var(--verde);
+      border-radius: var(--radio);
+      padding: 26px 24px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .tarjeta-regla:hover { transform: translateY(-8px); box-shadow: var(--sombra-verde); }
+    .tarjeta-regla .dato-grande {
+      font-family: var(--fuente-display);
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--verde);
+      margin-bottom: 10px;
+    }
+    .tarjeta-regla strong { display: block; margin-bottom: 6px; font-size: 1rem; }
+    .tarjeta-regla p { color: var(--gris); font-size: .93rem; }
+
+    .cita-coach {
+      margin-top: 40px;
+      background: linear-gradient(115deg, rgba(163,255,18,.12), rgba(163,255,18,.03) 60%), var(--grafito);
+      border: 1px solid rgba(163,255,18,.35);
+      border-radius: var(--radio);
+      padding: 30px 32px;
+    }
+    .cita-coach blockquote { font-size: 1.12rem; line-height: 1.6; }
+    .cita-coach footer {
+      margin-top: 14px;
+      color: var(--verde);
+      font-weight: 700;
+      font-size: .84rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================================
+       ACADEMIA
+       ============================================================ */
+    .academia { background: var(--carbon); }
+    .grid-categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 42px;
+    }
+    .tarjeta-cat {
+      position: relative;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radio);
+      padding: 26px 24px;
+      overflow: hidden;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .tarjeta-cat:hover { transform: translateY(-8px); box-shadow: var(--sombra-verde); border-color: rgba(163,255,18,.4); }
+    .tarjeta-cat .etiqueta {
+      display: inline-block;
+      background: var(--verde);
+      color: #0C1400;
+      font-family: var(--fuente-display);
+      font-size: .85rem;
+      letter-spacing: .06em;
+      padding: 5px 14px;
+      border-radius: 5px;
+      margin-bottom: 16px;
+    }
+    .tarjeta-cat h3 { font-size: 1.2rem; margin-bottom: 10px; }
+    .tarjeta-cat p { color: var(--gris); font-size: .93rem; }
+    .linea-dato {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px dashed rgba(255,255,255,.12);
+      font-size: .93rem;
+      color: var(--gris);
+    }
+    .linea-dato:last-of-type { border-bottom: none; }
+    .linea-dato svg { flex: none; margin-top: 4px; }
+    .linea-dato strong { color: var(--blanco); }
+
+    .beneficios {
+      margin-top: 46px;
+      background: linear-gradient(115deg, rgba(163,255,18,.12), rgba(163,255,18,.03) 60%), var(--grafito);
+      border: 1px solid rgba(163,255,18,.35);
+      border-radius: var(--radio);
+      padding: 32px 30px;
+    }
+    .beneficios h3 { font-size: 1.4rem; margin-bottom: 18px; }
+    .beneficios h3 em { color: var(--verde); font-style: normal; }
+    .beneficios-lista {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px 28px;
+      list-style: none;
+    }
+    .beneficios-lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--gris);
+      font-size: .95rem;
+    }
+    .beneficios-lista li svg { flex: none; margin-top: 4px; }
+    .beneficios-lista li strong { color: var(--blanco); }
+
+    .sede-banda {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radio);
+      padding: 22px 26px;
+    }
+    .sede-banda .sede-info { display: flex; align-items: center; gap: 16px; }
+    .sede-banda .sede-info .pin {
+      flex: none;
+      width: 46px; height: 46px;
+      display: grid;
+      place-items: center;
+      background: var(--verde);
+      border-radius: 12px;
+    }
+    .sede-banda .sede-info small {
+      display: block;
+      color: var(--gris);
+      font-size: .74rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* ============================================================
+       PALMARÉS
+       ============================================================ */
+    .palmares { background: var(--negro); }
+    .linea-tiempo { margin-top: 46px; position: relative; padding-left: 26px; }
+    .linea-tiempo::before {
+      content: "";
+      position: absolute;
+      left: 6px; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--verde), rgba(163,255,18,.15));
+    }
+    .hito { position: relative; padding: 0 0 30px 26px; }
+    .hito::before {
+      content: "";
+      position: absolute;
+      left: -26px; top: 7px;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--negro);
+      border: 3px solid var(--verde);
+    }
+    .hito .anio {
+      font-family: var(--fuente-display);
+      font-size: 1.5rem;
+      color: var(--verde);
+      line-height: 1;
+    }
+    .hito h3 { font-size: 1.05rem; margin: 8px 0 6px; }
+    .hito p { color: var(--gris); font-size: .95rem; }
+
+    .medallero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+    .medalla {
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radio);
+      padding: 22px 20px;
+      text-align: center;
+    }
+    .medalla .icono { font-size: 1.8rem; line-height: 1; }
+    .medalla .num {
+      font-family: var(--fuente-display);
+      font-size: 2rem;
+      color: var(--verde);
+      line-height: 1.1;
+      margin-top: 8px;
+    }
+    .medalla span { color: var(--gris); font-size: .84rem; }
+
+    /* ============================================================
+       EQUIPO / ROSTER
+       ============================================================ */
+    .equipo { background: var(--carbon); }
+    .grid-personas {
+      display: grid;
+      gap: 22px;
+      margin-top: 42px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+    .tarjeta-persona {
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 16px;
+      padding: 26px 22px;
+      text-align: center;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .tarjeta-persona:hover { transform: translateY(-5px); border-color: rgba(163,255,18,.5); }
+    .tarjeta-persona .retrato {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 16px;
+      border: 3px solid var(--verde);
+      background: var(--negro);
+      display: grid;
+      place-items: center;
+      font-family: var(--fuente-display);
+      font-size: 1.6rem;
+      color: var(--verde);
+    }
+    .tarjeta-persona h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .tarjeta-persona .dato-persona {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--verde);
+      background: var(--verde-tenue);
+      border: 1px solid rgba(163,255,18,.4);
+      padding: 4px 13px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .tarjeta-persona p { color: var(--gris); font-size: .9rem; line-height: 1.6; }
+
+    /* ============================================================
+       TORNEOS
+       ============================================================ */
+    .torneos { background: var(--negro); }
+    .grid-torneos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 42px;
+    }
+    .tarjeta-torneo {
+      position: relative;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      border-left: 4px solid var(--verde);
+      border-radius: var(--radio);
+      padding: 26px 24px;
+    }
+    .tarjeta-torneo .fecha {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--verde-tenue);
+      border: 1px solid rgba(163,255,18,.4);
+      color: var(--verde);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 100px;
+      margin-bottom: 14px;
+    }
+    .tarjeta-torneo h3 { font-size: 1.15rem; margin-bottom: 10px; }
+    .tarjeta-torneo p { color: var(--gris); font-size: .93rem; margin-bottom: 16px; }
+    .tarjeta-torneo .btn { padding: 11px 22px; font-size: .84rem; }
+
+    /* ============================================================
+       GALERÍA
+       ============================================================ */
+    .galeria { background: var(--carbon); }
+    .grid-galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 42px;
+    }
+    .foto-galeria {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      cursor: pointer;
+      background: none;
+      padding: 0;
+      display: block;
+      width: 100%;
+    }
+    .foto-galeria img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform .4s ease, filter .4s ease;
+    }
+    .foto-galeria:hover img { transform: scale(1.06); filter: brightness(1.08); }
+    .foto-galeria:focus-visible { outline: 3px solid var(--verde); outline-offset: 3px; }
+
+    /* Visor de fotos ampliadas */
+    .visor {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(0,0,0,.94);
+      display: none;
+      place-items: center;
+      padding: 24px;
+    }
+    .visor.abierto { display: grid; }
+    .visor img { max-width: 92vw; max-height: 86vh; border-radius: 10px; }
+    .visor-cerrar {
+      position: absolute;
+      top: 18px; right: 22px;
+      background: none;
+      border: none;
+      color: var(--blanco);
+      font-size: 2.4rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .visor-cerrar:focus-visible { outline: 3px solid var(--verde); outline-offset: 4px; }
+
+    /* ============================================================
+       CONTACTO
+       ============================================================ */
+    .contacto { background: var(--negro); }
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 42px;
+      align-items: start;
+    }
+    .campo { margin-bottom: 16px; }
+    .campo label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 7px;
+    }
+    .campo input, .campo select, .campo textarea {
+      width: 100%;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      padding: 13px 15px;
+      color: var(--blanco);
+      font-family: var(--fuente-cuerpo);
+      font-size: .97rem;
+    }
+    .campo input:focus, .campo select:focus, .campo textarea:focus {
+      outline: none;
+      border-color: var(--verde);
+      box-shadow: 0 0 0 3px rgba(163,255,18,.18);
+    }
+    .campo textarea { min-height: 110px; resize: vertical; }
+    .nota-form { color: var(--gris); font-size: .84rem; margin-top: 12px; }
+
+    .datos-contacto { display: grid; gap: 14px; }
+    .dato-contacto {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radio);
+      padding: 16px 18px;
+      text-decoration: none;
+      color: var(--blanco);
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .dato-contacto:hover { border-color: rgba(163,255,18,.5); transform: translateX(4px); }
+    .dato-contacto .ico {
+      flex: none;
+      width: 44px; height: 44px;
+      display: grid;
+      place-items: center;
+      background: var(--verde-tenue);
+      border: 1px solid rgba(163,255,18,.4);
+      border-radius: 11px;
+    }
+    .dato-contacto small {
+      display: block;
+      color: var(--gris);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .mapa {
+      margin-top: 16px;
+      border-radius: var(--radio);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .mapa iframe { width: 100%; height: 240px; border: 0; display: block; }
+
+    @media (max-width: 940px) { .contacto-grid { grid-template-columns: 1fr; } }
+
+    /* ============================================================
+       FOOTER + BOTÓN FLOTANTE
+       ============================================================ */
+    .footer {
+      background: var(--carbon);
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding: 46px 0 30px;
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 26px;
+      align-items: center;
+    }
+    .footer-marca { display: flex; align-items: center; gap: 12px; }
+    .footer-marca img { height: 44px; }
+    .footer-marca .nombre { font-family: var(--fuente-display); font-size: 1.15rem; }
+    .footer-marca .nombre span { color: var(--verde); }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; list-style: none; }
+    .footer-links a { color: var(--gris); text-decoration: none; font-size: .9rem; }
+    .footer-links a:hover { color: var(--verde); }
+    .footer-legal {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: var(--gris);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    .wa-flotante {
+      position: fixed;
+      right: 18px; bottom: 18px;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--verde-wa);
+      color: #062e16;
+      font-weight: 800;
+      font-size: .9rem;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 100px;
+      box-shadow: 0 14px 34px -10px rgba(37,211,102,.6);
+      transition: transform .2s ease;
+    }
+    .wa-flotante:hover { transform: translateY(-3px) scale(1.03); }
+    .wa-flotante:focus-visible { outline: 3px solid var(--blanco); outline-offset: 3px; }
+    @media (max-width: 560px) {
+      .wa-flotante .texto-wa { display: none; }
+      .wa-flotante { padding: 15px; }
+      section { padding: 64px 0; }
+    }
+
+
+    /* Banda de propuesta — BORRAR estas reglas y el <div class="banda-muestra">
+       cuando el sitio sea el oficial de Ball So Hard */
+    .banda-muestra {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 95;
+      background: var(--oro);
+      color: #2A1E00;
+      text-align: center;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+    }
+    .nav { top: 32px; }
+    section { scroll-margin-top: 104px; }
+    @media (max-width: 560px) { .banda-muestra { font-size: .66rem; letter-spacing: .05em; } }
+
+    /* Aviso para los datos que faltan por confirmar con el cliente.
+       Borrar estas dos reglas y los <span class="por-confirmar"> al publicar. */
+    .por-confirmar {
+      background: rgba(232,181,74,.16);
+      border-bottom: 1px dashed var(--oro);
+      color: var(--oro);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banda-muestra">Propuesta de sitio web · versión de muestra, no oficial</div>
+
+  <!-- ============================================================
+       NAVEGACIÓN FIJA
+       ============================================================ -->
+  <nav class="nav">
+    <div class="contenedor nav-inner">
+      <a href="#inicio" class="nav-marca">
+        <img src="assets/logo-icono.png" alt="Escudo de Ball So Hard" onerror="this.style.display='none'">
+        <span class="nombre">BALL SO <span>HARD</span></span>
+      </a>
+
+      <button class="nav-burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="menu">
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#tresxtres">Qué es el 3x3</a></li>
+        <li><a href="#academia">Academia</a></li>
+        <li><a href="#palmares">Palmarés</a></li>
+        <li><a href="#torneos">Torneos</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto" class="nav-cta">Inscríbete</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <header class="hero" id="inicio">
+    <!-- Cuando tengas la foto del equipo, quita el comentario:
+    <img class="hero-foto" src="assets/hero.jpg" alt="Equipo Ball So Hard en cancha">
+    -->
+    <div class="contenedor hero-contenido">
+      <div>
+        <span class="hero-eyebrow"><span class="punto"></span> Academia abierta · Inscripciones 2026</span>
+        <h1>Ball So<span class="verde">Hard</span></h1>
+        <p class="eslogan"><strong>El proceso</strong> no se detiene</p>
+
+        <div class="hero-botones">
+          <a href="#academia" class="btn btn-verde">Entrena con nosotros</a>
+          <a href="#palmares" class="btn btn-borde">Ver el palmarés</a>
+        </div>
+
+        <div class="hero-datos">
+          <div class="hero-dato">
+            <div class="num"><em>2021</em></div>
+            <div class="txt">Desde su fundación</div>
+          </div>
+          <div class="hero-dato">
+            <div class="num">6–17</div>
+            <div class="txt">Años en la academia</div>
+          </div>
+          <div class="hero-dato">
+            <div class="num"><em>1°</em></div>
+            <div class="txt">Equipo pro 3x3 de Puebla</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-logo-wrap">
+        <img src="assets/logo-ballsohard.png" alt="Logo de Ball So Hard"
+             onerror="this.closest('.hero-logo-wrap').innerHTML='&lt;div class=&quot;marco-foto&quot;&gt;&lt;div class=&quot;ph ph-cuadrada&quot;&gt;&lt;div class=&quot;ph-inner&quot;&gt;&lt;span&gt;Aquí va el logo&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;'">
+      </div>
+    </div>
+  </header>
+
+  <!-- Cinta de logros -->
+  <div class="cinta" aria-hidden="true">
+    <div class="cinta-track">
+      <span>Campeón Nacional 3x3</span><span class="sep">◆</span>
+      <span>Subcampeón Quest 3x3 Chile</span><span class="sep">◆</span>
+      <span>Campeón Hoop It Up México</span><span class="sep">◆</span>
+      <span>AmeriCup Qualy 🥇</span><span class="sep">◆</span>
+      <span>FIBA Open Puebla 2026</span><span class="sep">◆</span>
+      <span>Campeón Nacional 3x3</span><span class="sep">◆</span>
+      <span>Subcampeón Quest 3x3 Chile</span><span class="sep">◆</span>
+      <span>Campeón Hoop It Up México</span><span class="sep">◆</span>
+      <span>AmeriCup Qualy 🥇</span><span class="sep">◆</span>
+      <span>FIBA Open Puebla 2026</span><span class="sep">◆</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       NOSOTROS
+       ============================================================ -->
+  <section class="nosotros" id="nosotros">
+    <div class="contenedor">
+      <div class="nosotros-grid">
+        <div class="nosotros-texto revelar">
+          <span class="kicker">Quiénes somos</span>
+          <h2 class="titulo-seccion">El primer equipo <em>profesional</em> de 3x3 en Puebla</h2>
+
+          <p>Ball So Hard nació en <strong>2021</strong>, al final de la pandemia, cuando
+          <strong>Yannick Espinosa</strong> y <strong>Daniel Montiel</strong> juntaron a jugadores
+          que ya habían dejado de competir y armaron desde cero el primer equipo poblano
+          profesional de baloncesto 3x3 regulado por la FIBA.</p>
+
+          <p>Desde entonces competimos en el <strong>Circuito Pro 3x3 México</strong> y en torneos
+          del <strong>FIBA 3x3 World Tour</strong>, hemos representado a México fuera del país
+          y organizamos en Puebla los torneos más grandes de la disciplina.</p>
+
+          <div class="frase-central">“El proceso <em>no se detiene</em>”</div>
+
+          <p>Ese trabajo tiene un objetivo claro: que en Puebla haya un camino real para quien
+          quiere jugar en serio. De ahí nació <strong>Ball So Hard Development</strong>, nuestra
+          academia para niñas y niños de 6 a 17 años.</p>
+
+          <div class="pastillas">
+            <span class="pastilla">🏀 Circuito Pro 3x3 México</span>
+            <span class="pastilla">🌎 Experiencia internacional</span>
+            <span class="pastilla">🏫 Vinculación universitaria</span>
+            <span class="pastilla">📍 Puebla de Zaragoza</span>
+          </div>
+        </div>
+
+        <div class="revelar" data-delay="1">
+          <div class="marco-foto">
+            <img src="assets/equipo.jpg" alt="Equipo Ball So Hard"
+                 onerror="this.outerHTML='&lt;div class=&quot;ph&quot;&gt;&lt;div class=&quot;ph-inner&quot;&gt;&lt;span&gt;Foto del equipo — assets/equipo.jpg&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       QUÉ ES EL 3x3
+       ============================================================ -->
+  <section class="tresxtres" id="tresxtres">
+    <div class="contenedor">
+      <div class="revelar">
+        <span class="kicker">La disciplina</span>
+        <h2 class="titulo-seccion">No es basquetbol a la mitad. Es <em>otro juego</em></h2>
+        <p class="sub-seccion">El 3x3 es disciplina olímpica desde Tokio 2020. Mismo balón, misma
+        canasta, reglas parecidas — pero la mitad de cancha, un tercio de los jugadores y una
+        décima parte del tiempo para pensar.</p>
+      </div>
+
+      <div class="grid-reglas">
+        <div class="tarjeta-regla revelar">
+          <div class="dato-grande">10<span style="font-size:1rem"> min</span></div>
+          <strong>O 21 puntos</strong>
+          <p>Gana quien llegue primero a 21 o quien vaya arriba al minuto 10. No hay partido muerto.</p>
+        </div>
+        <div class="tarjeta-regla revelar" data-delay="1">
+          <div class="dato-grande">12<span style="font-size:1rem"> s</span></div>
+          <strong>De posesión</strong>
+          <p>Contra los 24 del 5x5. Se decide y se ejecuta: no hay tiempo para replantear la jugada.</p>
+        </div>
+        <div class="tarjeta-regla revelar" data-delay="2">
+          <div class="dato-grande">1 y 2</div>
+          <strong>Puntos por canasta</strong>
+          <p>Un punto dentro del arco, dos afuera. Un tiro exterior vale doble en un partido a 21.</p>
+        </div>
+        <div class="tarjeta-regla revelar" data-delay="3">
+          <div class="dato-grande">+</div>
+          <strong>Más contacto</strong>
+          <p>El arbitraje permite más físico. Es más rápido, más duro y más exigente en lo mental.</p>
+        </div>
+      </div>
+
+      <div class="cita-coach revelar">
+        <blockquote>“Al reducir el espacio y la cancha, todo se transforma más rápido. No tienes
+        tiempo de replantear jugadas: tienes que actuar y decidir más rápido, y los árbitros
+        permiten más contacto, lo que lo hace más físico.”</blockquote>
+        <footer>Yannick Espinosa · Fundador de Ball So Hard</footer>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ACADEMIA — Ball So Hard Development
+       ============================================================ -->
+  <section class="academia" id="academia">
+    <div class="contenedor">
+      <div class="revelar">
+        <span class="kicker">Ball So Hard Development</span>
+        <h2 class="titulo-seccion">La academia: de <em>6 a 17 años</em>, rama varonil y femenil</h2>
+        <p class="sub-seccion">Los mismos entrenadores que compiten al máximo nivel del 3x3 en México
+        trabajan con las categorías formativas. No es una escuelita aparte: es el primer escalón del
+        mismo proyecto.</p>
+      </div>
+
+      <div class="grid-categorias">
+        <div class="tarjeta-cat revelar">
+          <span class="etiqueta">6 – 9 años</span>
+          <h3>Iniciación</h3>
+          <p>Coordinación, manejo de balón y las bases del juego. Aprender a competir sin perder el gusto por jugar.</p>
+        </div>
+        <div class="tarjeta-cat revelar" data-delay="1">
+          <span class="etiqueta">10 – 13 años</span>
+          <h3>Formación</h3>
+          <p>Fundamentos técnicos, lectura de juego y primeras competencias en categorías U12 y U14.</p>
+        </div>
+        <div class="tarjeta-cat revelar" data-delay="2">
+          <span class="etiqueta">14 – 17 años</span>
+          <h3>Alto rendimiento</h3>
+          <p>Preparación física, táctica de 3x3 y torneos FIBA con puntos de ranking. La antesala de la selección.</p>
+        </div>
+      </div>
+
+      <div class="beneficios revelar">
+        <h3>Qué incluye <em>entrenar aquí</em></h3>
+        <ul class="beneficios-lista">
+          <li><span aria-hidden="true">▸</span> <span><strong>Entrenadores con recorrido internacional</strong> — el cuerpo técnico compite en el Circuito Pro 3x3.</span></li>
+          <li><span aria-hidden="true">▸</span> <span><strong>Coach Zury Ruiz</strong> — entrenadora de la academia y de la Selección CONADE 3x3 Femenil.</span></li>
+          <li><span aria-hidden="true">▸</span> <span><strong>Torneos FIBA en casa</strong> — los alumnos compiten en los torneos que la propia organización monta en Puebla.</span></li>
+          <li><span aria-hidden="true">▸</span> <span><strong>Ruta a selección</strong> — hay jugadores de la academia en procesos de selección estatal y nacional.</span></li>
+          <li><span aria-hidden="true">▸</span> <span><strong>Campamentos de verano</strong> — el <em>Hard Summer</em>: dos semanas de trabajo intensivo.</span></li>
+          <li><span aria-hidden="true">▸</span> <span><strong>Convivencia con jugadores profesionales</strong> — clínicas con el equipo elite.</span></li>
+        </ul>
+      </div>
+
+      <div class="sede-banda revelar">
+        <div class="sede-info">
+          <span class="pin" aria-hidden="true">📍</span>
+          <div>
+            <small>Dónde entrenamos</small>
+            <strong>Polideportivo Flor del Bosque</strong><br>
+            <span style="color:var(--gris);font-size:.92rem">Gral. Juan N. Méndez #142, San Bernardino Tlaxcalancingo, Puebla</span>
+          </div>
+        </div>
+        <a href="#contacto" class="btn btn-verde">Preguntar por horarios</a>
+      </div>
+
+      <div class="sede-banda revelar" style="border-color:rgba(232,181,74,.45)">
+        <div class="sede-info">
+          <span class="pin" aria-hidden="true" style="background:var(--oro)">🕒</span>
+          <div>
+            <small>Horarios y costos</small>
+            <strong><span class="por-confirmar">POR CONFIRMAR con la academia</span></strong><br>
+            <span style="color:var(--gris);font-size:.92rem">Días, horas por categoría, mensualidad e inscripción</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PALMARÉS
+       ============================================================ -->
+  <section class="palmares" id="palmares">
+    <div class="contenedor">
+      <div class="revelar">
+        <span class="kicker">Palmarés</span>
+        <h2 class="titulo-seccion">Cinco años, <em>una línea recta</em></h2>
+        <p class="sub-seccion">De un equipo armado en pandemia a representar a México fuera del país.</p>
+      </div>
+
+      <div class="medallero revelar">
+        <div class="medalla">
+          <div class="icono" aria-hidden="true">🥇</div>
+          <div class="num">Nacional</div>
+          <span>Campeón de México 3x3</span>
+        </div>
+        <div class="medalla">
+          <div class="icono" aria-hidden="true">🌎</div>
+          <div class="num">AmeriCup</div>
+          <span>Representando a México</span>
+        </div>
+        <div class="medalla">
+          <div class="icono" aria-hidden="true">🥈</div>
+          <div class="num">Chile</div>
+          <span>Subcampeón Quest 3x3</span>
+        </div>
+        <div class="medalla">
+          <div class="icono" aria-hidden="true">🏆</div>
+          <div class="num">4 títulos</div>
+          <span>FIBA Open Puebla 2026</span>
+        </div>
+      </div>
+
+      <div class="linea-tiempo">
+        <div class="hito revelar">
+          <div class="anio">2021</div>
+          <h3>Nace Ball So Hard</h3>
+          <p>Yannick Espinosa y Daniel Montiel fundan el equipo al cierre de la pandemia. Primer título:
+          el campeonato de la Ciudad de México.</p>
+        </div>
+        <div class="hito revelar">
+          <div class="anio">2022</div>
+          <h3>Podio en el AmeriCup Challenger</h3>
+          <p>El equipo se mete al podio de un torneo continental y entra al radar del 3x3 mexicano.</p>
+        </div>
+        <div class="hito revelar">
+          <div class="anio">2023</div>
+          <h3>Campeón nacional y salto internacional</h3>
+          <p>Campeones de México, campeones del Hoop It Up 3x3 México, primer lugar del AmeriCup Qualy
+          y subcampeones del Quest 3x3 en Chile. Con el título nacional, representan a México en el
+          AmeriCup Challenger.</p>
+        </div>
+        <div class="hito revelar">
+          <div class="anio">2024 – 2025</div>
+          <h3>Puebla se vuelve sede</h3>
+          <p>La organización empieza a montar sus propios torneos FIBA Open en Puebla y arranca
+          formalmente la academia de desarrollo.</p>
+        </div>
+        <div class="hito revelar">
+          <div class="anio">2026</div>
+          <h3>Cuatro títulos en casa</h3>
+          <p>En el FIBA Open 3x3 Puebla —<strong>231 equipos</strong>, récord de participación— Ball So
+          Hard gana Elite varonil (final 9-7 sobre Dame Dolla, invicto), U18 varonil, U18 femenil y U14
+          femenil, con el equipo de Yannick Espinosa, Camilo Preciado, Óscar Velázquez y Akeem Garfield.
+          <span class="por-confirmar">Resultado del nacional en Oaxtepec: por confirmar.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EQUIPO
+       ============================================================ -->
+  <section class="equipo" id="equipo">
+    <div class="contenedor">
+      <div class="revelar">
+        <span class="kicker">Quién está detrás</span>
+        <h2 class="titulo-seccion">El <em>cuerpo</em> del proyecto</h2>
+        <p class="sub-seccion">Los mismos que compiten son los que entrenan a las categorías formativas.</p>
+      </div>
+
+      <div class="grid-personas">
+        <div class="tarjeta-persona revelar">
+          <div class="retrato" aria-hidden="true">YE</div>
+          <h3>Yannick Espinosa</h3>
+          <span class="dato-persona">Fundador · Capitán</span>
+          <p>Fundó el equipo en 2021 y lo capitanea. Dirige también procesos de 3x3 en Puebla.</p>
+        </div>
+        <div class="tarjeta-persona revelar" data-delay="1">
+          <div class="retrato" aria-hidden="true">DM</div>
+          <h3>Daniel Montiel</h3>
+          <span class="dato-persona">Cofundador</span>
+          <p>Cofundador del proyecto y parte del roster desde la primera temporada.</p>
+        </div>
+        <div class="tarjeta-persona revelar" data-delay="2">
+          <div class="retrato" aria-hidden="true">ZR</div>
+          <h3>Zury Ruiz</h3>
+          <span class="dato-persona">Coach academia</span>
+          <p>Entrenadora de Ball So Hard Development y de la Selección CONADE 3x3 Femenil.</p>
+        </div>
+        <div class="tarjeta-persona revelar" data-delay="3">
+          <div class="retrato" aria-hidden="true">+</div>
+          <h3>Roster elite 2026</h3>
+          <span class="dato-persona">Equipo profesional</span>
+          <p>Camilo Preciado, Óscar Velázquez y Akeem Garfield completan el equipo campeón del FIBA Open Puebla.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TORNEOS
+       ============================================================ -->
+  <section class="torneos" id="torneos">
+    <div class="contenedor">
+      <div class="revelar">
+        <span class="kicker">Lo que organizamos</span>
+        <h2 class="titulo-seccion">Puebla, <em>sede</em> del 3x3 nacional</h2>
+        <p class="sub-seccion">Ball So Hard no solo compite: monta en Puebla los torneos donde se
+        reparten puntos de ranking FIBA y se abre la puerta a la selección mexicana.</p>
+      </div>
+
+      <div class="grid-torneos">
+        <div class="tarjeta-torneo revelar">
+          <span class="fecha">4, 5 y 6 de septiembre 2026</span>
+          <h3>Hoop It Up 3x3 México — Puebla</h3>
+          <p>Regresa el torneo más conocido del 3x3 en el país. Inscripciones por
+          <strong>play3x3</strong>; informes con Yannick Espinosa al 222 116 8221.</p>
+          <a href="https://wa.me/522221168221?text=Hola%2C%20quiero%20informes%20del%20Hoop%20It%20Up%203x3%20M%C3%A9xico%20Puebla" target="_blank" rel="noopener" class="btn btn-verde">Quiero inscribirme</a>
+        </div>
+
+        <div class="tarjeta-torneo revelar" data-delay="1">
+          <span class="fecha">Abril · cada año</span>
+          <h3>FIBA Open 3x3 Puebla</h3>
+          <p>La edición 2026 rompió récord con <strong>231 equipos</strong> en el Tec de Monterrey
+          campus Puebla. Torneo avalado por FIBA: da puntos de ranking y hace elegibles a los
+          jugadores para la selección nacional.</p>
+          <a href="#contacto" class="btn btn-borde">Avísenme de la próxima</a>
+        </div>
+
+        <div class="tarjeta-torneo revelar" data-delay="2">
+          <span class="fecha">Verano</span>
+          <h3>Hard Summer</h3>
+          <p>Dos semanas de campamento intensivo para las categorías formativas: trabajo físico,
+          técnica y convivencia con el equipo profesional.</p>
+          <a href="#contacto" class="btn btn-borde">Informes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA
+       ============================================================ -->
+  <section class="galeria" id="galeria">
+    <div class="contenedor">
+      <div class="revelar">
+        <span class="kicker">Galería</span>
+        <h2 class="titulo-seccion">La <em>duela</em>, no el discurso</h2>
+        <p class="sub-seccion">Para agregar fotos, sube los archivos a la carpeta
+        <code>assets/galeria/</code> y agrégalos a la lista al final de este archivo.</p>
+      </div>
+
+      <div class="grid-galeria" id="grid-galeria">
+        <!-- Las fotos se pintan solas desde la lista FOTOS del script al final -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Visor de fotos -->
+  <div class="visor" id="visor" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button class="visor-cerrar" id="visor-cerrar" aria-label="Cerrar foto">&times;</button>
+    <img id="visor-img" src="" alt="">
+  </div>
+
+  <!-- ============================================================
+       CONTACTO
+       ============================================================ -->
+  <section class="contacto" id="contacto">
+    <div class="contenedor">
+      <div class="revelar">
+        <span class="kicker">Contacto</span>
+        <h2 class="titulo-seccion">Da el <em>siguiente paso</em></h2>
+        <p class="sub-seccion">Déjanos tus datos y te contestamos por WhatsApp con horarios,
+        costos y la fecha de tu clase muestra.</p>
+      </div>
+
+      <div class="contacto-grid">
+        <form id="form-contacto" class="revelar" novalidate>
+          <div class="campo">
+            <label for="nombre">Tu nombre</label>
+            <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Nombre y apellido">
+          </div>
+          <div class="campo">
+            <label for="jugador">Nombre y edad del jugador</label>
+            <input type="text" id="jugador" name="jugador" placeholder="Ej. Diego, 11 años">
+          </div>
+          <div class="campo">
+            <label for="interes">¿Qué te interesa?</label>
+            <select id="interes" name="interes">
+              <option>Inscribir a un jugador a la academia</option>
+              <option>Clase muestra</option>
+              <option>Campamento Hard Summer</option>
+              <option>Inscribir un equipo a un torneo</option>
+              <option>Patrocinios y alianzas</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué necesitas"></textarea>
+          </div>
+          <button type="submit" class="btn btn-wa" style="width:100%">Enviar por WhatsApp</button>
+          <p class="nota-form">Al enviar se abre WhatsApp con el mensaje ya escrito. No guardamos
+          tus datos en ningún servidor.</p>
+        </form>
+
+        <div class="revelar" data-delay="1">
+          <div class="datos-contacto">
+            <a class="dato-contacto" href="https://wa.me/522221168221?text=Hola%2C%20quiero%20informes%20de%20la%20academia%20Ball%20So%20Hard" target="_blank" rel="noopener">
+              <span class="ico" aria-hidden="true">💬</span>
+              <div>
+                <small>WhatsApp</small>
+                <strong>222 116 8221</strong>
+              </div>
+            </a>
+            <a class="dato-contacto" href="https://www.instagram.com/ballsohard_dev/" target="_blank" rel="noopener">
+              <span class="ico" aria-hidden="true">📸</span>
+              <div>
+                <small>Instagram</small>
+                <strong>@ballsohard_dev</strong>
+              </div>
+            </a>
+            <div class="dato-contacto" style="cursor:default">
+              <span class="ico" aria-hidden="true">📍</span>
+              <div>
+                <small>Sede</small>
+                <strong>Polideportivo Flor del Bosque</strong><br>
+                <span style="color:var(--gris);font-size:.9rem">Gral. Juan N. Méndez #142, San Bernardino Tlaxcalancingo, Puebla</span>
+              </div>
+            </div>
+            <div class="dato-contacto" style="cursor:default">
+              <span class="ico" aria-hidden="true">✉️</span>
+              <div>
+                <small>Correo</small>
+                <strong><span class="por-confirmar">POR CONFIRMAR</span></strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="mapa">
+            <iframe
+              title="Mapa de la sede de Ball So Hard Development"
+              src="https://www.google.com/maps?q=Polideportivo%20Flor%20del%20Bosque%2C%20Gral.%20Juan%20N.%20M%C3%A9ndez%20142%2C%20San%20Bernardino%20Tlaxcalancingo%2C%20Puebla&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="contenedor">
+      <div class="footer-grid">
+        <div class="footer-marca">
+          <img src="assets/logo-icono.png" alt="" onerror="this.style.display='none'">
+          <span class="nombre">BALL SO <span>HARD</span></span>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#academia">Academia</a></li>
+          <li><a href="#palmares">Palmarés</a></li>
+          <li><a href="#torneos">Torneos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="https://www.instagram.com/ballsohard_dev/" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-legal">
+        Ball So Hard · Baloncesto 3x3 · Puebla de Zaragoza, México — El proceso no se detiene.
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-flotante" href="https://wa.me/522221168221?text=Hola%2C%20quiero%20informes%20de%20Ball%20So%20Hard" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+    <span aria-hidden="true">💬</span><span class="texto-wa">Escríbenos</span>
+  </a>
+
+  <script>
+    'use strict';
+
+    /* ---------- Menú de celular ---------- */
+    var burger = document.getElementById('burger');
+    var menu = document.getElementById('menu');
+    burger.addEventListener('click', function () {
+      var abierto = menu.classList.toggle('abierto');
+      burger.setAttribute('aria-expanded', String(abierto));
+      burger.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        menu.classList.remove('abierto');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    /* ---------- Animaciones de aparición ---------- */
+    var animables = document.querySelectorAll('.revelar');
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (entrada) {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add('visible');
+            obs.unobserve(entrada.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      animables.forEach(function (el) { obs.observe(el); });
+    } else {
+      animables.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+    /* ---------- GALERÍA ----------
+       Agrega aquí el nombre de cada archivo que subas a assets/galeria/.
+       El nombre del archivo se usa como descripción de la foto, así que
+       conviene nombrarlos con palabras separadas por guiones:
+       'campeon-fiba-open-puebla-2026.jpg' */
+    var FOTOS = [
+      // 'campeon-fiba-open-puebla-2026.jpg',
+      // 'academia-entrenamiento.jpg',
+    ];
+
+    var grid = document.getElementById('grid-galeria');
+    var visor = document.getElementById('visor');
+    var visorImg = document.getElementById('visor-img');
+
+    function describir(archivo) {
+      return archivo.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ').trim();
+    }
+
+    if (FOTOS.length === 0) {
+      grid.innerHTML =
+        '<div class="marco-foto" style="grid-column:1/-1">' +
+        '<div class="ph ph-baja"><div class="ph-inner"><span>Sube las fotos a assets/galeria/ y agrégalas a la lista FOTOS</span></div></div>' +
+        '</div>';
+    } else {
+      FOTOS.forEach(function (archivo) {
+        var texto = describir(archivo);
+        var boton = document.createElement('button');
+        boton.className = 'foto-galeria';
+        boton.type = 'button';
+        boton.setAttribute('aria-label', 'Ampliar foto: ' + texto);
+        var img = document.createElement('img');
+        img.src = 'assets/galeria/' + archivo;
+        img.alt = texto;
+        img.loading = 'lazy';
+        boton.appendChild(img);
+        boton.addEventListener('click', function () {
+          visorImg.src = img.src;
+          visorImg.alt = texto;
+          visor.classList.add('abierto');
+          document.getElementById('visor-cerrar').focus();
+        });
+        grid.appendChild(boton);
+      });
+    }
+
+    function cerrarVisor() {
+      visor.classList.remove('abierto');
+      visorImg.src = '';
+    }
+    document.getElementById('visor-cerrar').addEventListener('click', cerrarVisor);
+    visor.addEventListener('click', function (e) { if (e.target === visor) cerrarVisor(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && visor.classList.contains('abierto')) cerrarVisor();
+    });
+
+    /* ---------- Formulario → WhatsApp ----------
+       No hay servidor: el formulario arma un mensaje y abre el chat. */
+    var WHATSAPP = '522221168221';
+    document.getElementById('form-contacto').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target;
+      var nombre = f.nombre.value.trim();
+      if (!nombre) {
+        f.nombre.focus();
+        f.nombre.setAttribute('aria-invalid', 'true');
+        return;
+      }
+      f.nombre.removeAttribute('aria-invalid');
+
+      var partes = ['Hola Ball So Hard, soy ' + nombre + '.'];
+      if (f.jugador.value.trim()) partes.push('Jugador: ' + f.jugador.value.trim() + '.');
+      partes.push('Me interesa: ' + f.interes.value + '.');
+      if (f.mensaje.value.trim()) partes.push(f.mensaje.value.trim());
+
+      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(partes.join(' ')), '_blank', 'noopener');
+    });
+  </script>
+</body>
+</html>
