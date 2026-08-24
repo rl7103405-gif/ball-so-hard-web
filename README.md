@@ -14,6 +14,30 @@ Marcado como **muestra no oficial**: banda amarilla arriba y `noindex` para que
 Google no lo liste. Ver `PASOS.md` para publicarlo y para quitar ambas cosas
 cuando el cliente autorice.
 
+## Qué hay en la carpeta
+
+| Archivo | Qué es |
+|---|---|
+| `index.html` | La página pública |
+| `portal.html` | El portal privado del equipo (avisos, torneos, entrenamientos, galería) |
+| `propuesta.html` | Documento de propuesta para enseñarle al cliente — se abre e imprime a PDF |
+| `PASOS.md` | Cómo publicarlo en GitHub Pages |
+
+## El portal
+
+`portal.html` es la versión de prueba del área privada. Para entrar como
+administrador: **admin@ballsohard.mx** · contraseña **bsh123456**.
+
+Lo que el administrador registra en la pestaña **Torneos** aparece solo en el
+palmarés de la página pública, y las fotos que sube en **Galería** salen en la
+galería del sitio. Esa es la parte que más vende: el club actualiza su propio
+palmarés sin tocar código.
+
+> ⚠️ En modo demo los usuarios y contraseñas viven en el navegador
+> (`localStorage`) y los datos no se comparten entre dispositivos. Es un maniquí
+> para demostrar el flujo — nunca debe operar así con datos reales de menores.
+> El paso a Firebase solo cambia `cargar()` y `guardar()`.
+
 ## Cómo verlo
 
 Abre `index.html` con doble clic. No hay que instalar nada — es HTML, CSS y JS puros,

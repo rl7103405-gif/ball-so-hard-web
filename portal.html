@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Ball So Hard — Avisos, torneos y entrenamientos</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-icono.png">
+  <style>
+    :root {
+      --verde: #A3FF12;
+      --verde-tenue: rgba(163, 255, 18, .14);
+      --negro: #08090A;
+      --carbon: #101113;
+      --grafito: #191B1E;
+      --blanco: #FFFFFF;
+      --gris: #B5B7BD;
+      --oro: #E8B54A;
+      --rojo: #FF5C6C;
+      --fuente-display: 'Archivo Black', Impact, sans-serif;
+      --fuente-cuerpo: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+      --radio: 14px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--negro);
+      color: var(--blanco);
+      font-family: var(--fuente-cuerpo);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3 {
+      font-family: var(--fuente-display);
+      font-weight: 400;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    h1 em, h2 em, h3 em { color: var(--verde); font-style: normal; }
+    .contenedor { width: min(1060px, 92%); margin: 0 auto; }
+    .oculto { display: none !important; }
+
+    /* ---------- Cinta de modo demo ---------- */
+    .cinta-demo {
+      background: var(--oro);
+      color: #2A1E00;
+      font-size: .82rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 9px 16px;
+    }
+
+    /* ---------- Barra superior ---------- */
+    .barra {
+      background: var(--carbon);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .barra-inner {
+      width: min(1060px, 92%);
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .barra-marca { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--blanco); }
+    .barra-marca img { height: 32px; }
+    .barra-marca span { font-family: var(--fuente-display); font-size: .98rem; letter-spacing: .04em; }
+    .barra-marca em { color: var(--verde); font-style: normal; }
+    .barra-acciones { display: flex; align-items: center; gap: 12px; }
+    .hola { color: var(--gris); font-size: .88rem; }
+    .hola strong { color: var(--blanco); }
+
+    /* ---------- Botones ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 26px;
+      font-family: var(--fuente-cuerpo);
+      font-weight: 800;
+      font-size: .92rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .btn:focus-visible { outline: 3px solid var(--blanco); outline-offset: 3px; }
+    .btn-verde { background: var(--verde); color: #0C1400; }
+    .btn-verde:hover { background: #B8FF45; transform: translateY(-2px); }
+    .btn-borde { background: transparent; color: var(--blanco); border-color: rgba(255,255,255,.35); }
+    .btn-borde:hover { border-color: var(--blanco); transform: translateY(-2px); }
+    .btn-peligro { background: transparent; color: var(--rojo); border-color: rgba(255,92,108,.5); }
+    .btn-peligro:hover { background: rgba(255,92,108,.12); }
+    .btn-mini { padding: 8px 15px; font-size: .78rem; }
+
+    /* ---------- Formularios ---------- */
+    .campo { margin-bottom: 15px; }
+    .campo label {
+      display: block;
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 6px;
+    }
+    .campo input, .campo select, .campo textarea {
+      width: 100%;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--blanco);
+      font-family: var(--fuente-cuerpo);
+      font-size: .96rem;
+    }
+    .campo input:focus, .campo select:focus, .campo textarea:focus {
+      outline: none;
+      border-color: var(--verde);
+      box-shadow: 0 0 0 3px rgba(163,255,18,.18);
+    }
+    .campo textarea { min-height: 92px; resize: vertical; }
+    .campo .ayuda { color: var(--gris); font-size: .8rem; margin-top: 5px; }
+    .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+    @media (max-width: 640px) { .fila { grid-template-columns: 1fr; } }
+
+    .error {
+      display: none;
+      background: rgba(255,92,108,.12);
+      border: 1px solid rgba(255,92,108,.45);
+      color: #ffc2c9;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: .9rem;
+      margin-bottom: 14px;
+    }
+    .error.visible { display: block; }
+    .ok {
+      display: none;
+      background: var(--verde-tenue);
+      border: 1px solid rgba(163,255,18,.45);
+      color: var(--verde);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: .9rem;
+      margin-bottom: 14px;
+    }
+    .ok.visible { display: block; }
+
+    /* ---------- Login ---------- */
+    #pantalla-auth { padding: 54px 0 80px; }
+    .panel-auth { max-width: 460px; margin: 0 auto; text-align: center; }
+    .panel-auth .logo-centro { width: 108px; margin: 0 auto 18px; }
+    .panel-auth h1 { font-size: 2rem; }
+    .panel-auth .sub { color: var(--gris); margin: 10px 0 26px; }
+    .caja {
+      background: var(--carbon);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radio);
+      padding: 26px 24px;
+      text-align: left;
+    }
+    .tabs-auth { display: flex; gap: 8px; margin-bottom: 20px; }
+    .tabs-auth button {
+      flex: 1;
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--gris);
+      border-radius: 8px;
+      padding: 11px;
+      font-family: var(--fuente-cuerpo);
+      font-weight: 700;
+      font-size: .88rem;
+      cursor: pointer;
+    }
+    .tabs-auth button.activa { background: var(--verde); color: #0C1400; border-color: var(--verde); }
+    .nota-auth {
+      margin-top: 18px;
+      color: var(--gris);
+      font-size: .86rem;
+      background: var(--grafito);
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .nota-auth strong { color: var(--verde); }
+
+    /* ---------- Portal ---------- */
+    #pantalla-portal { padding: 26px 0 90px; }
+    .tabs-portal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid rgba(255,255,255,.09);
+      padding-bottom: 14px;
+    }
+    .tabs-portal button {
+      background: var(--grafito);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--gris);
+      border-radius: 100px;
+      padding: 10px 18px;
+      font-family: var(--fuente-cuerpo);
+      font-weight: 700;
+      font-size: .86rem;
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease;
+    }
+    .tabs-portal button.activa { background: var(--verde); color: #0C1400; border-color: var(--verde); }
+    .vista { display: none; }
+    .vista.activa { display: block; }
+    .encabezado-vista {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .encabezado-vista h2 { font-size: 1.7rem; }
+
+    .caja-admin {
+      background: linear-gradient(115deg, rgba(163,255,18,.1), rgba(163,255,18,.02) 60%), var(--carbon);
+      border: 1px solid rgba(163,255,18,.35);
+      border-radius: var(--radio);
+      padding: 22px 22px 8px;
+      margin-bottom: 26px;
+    }
+    .caja-admin h3 { font-size: 1.05rem; margin-bottom: 16px; }
+
+    .tarjeta {
+      background: var(--carbon);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radio);
+      padding: 20px 22px;
+      margin-bottom: 14px;
+    }
+    .tarjeta h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .tarjeta .meta {
+      color: var(--gris);
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .tarjeta p { color: var(--gris); }
+    .tarjeta .acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .tarjeta img.foto-aviso { border-radius: 10px; margin-top: 14px; }
+
+    .vacio {
+      text-align: center;
+      color: var(--gris);
+      border: 1px dashed rgba(255,255,255,.18);
+      border-radius: var(--radio);
+      padding: 40px 20px;
+    }
+
+    /* ---------- Torneos ---------- */
+    .grid-torneos-portal {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .tarjeta-torneo-p {
+      position: relative;
+      background: var(--carbon);
+      border: 1px solid rgba(255,255,255,.09);
+      border-left: 4px solid var(--verde);
+      border-radius: var(--radio);
+      padding: 20px 22px;
+      overflow: hidden;
+    }
+    .tarjeta-torneo-p.oro { border-left-color: var(--oro); }
+    .medalla-t {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+      background: var(--verde-tenue);
+      border: 1px solid rgba(163,255,18,.4);
+      color: var(--verde);
+    }
+    .medalla-t.oro { background: rgba(232,181,74,.16); border-color: rgba(232,181,74,.5); color: var(--oro); }
+    .tarjeta-torneo-p h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .tarjeta-torneo-p .datos-t { color: var(--gris); font-size: .88rem; }
+    .tarjeta-torneo-p .datos-t span { display: block; }
+
+    /* ---------- Galería ---------- */
+    .grid-fotos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .celda-foto { position: relative; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,.12); }
+    .celda-foto img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+    .celda-foto button {
+      position: absolute;
+      top: 6px; right: 6px;
+      background: rgba(8,9,10,.82);
+      border: 1px solid rgba(255,92,108,.6);
+      color: var(--rojo);
+      border-radius: 7px;
+      padding: 4px 9px;
+      font-size: .74rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .medidor {
+      color: var(--gris);
+      font-size: .84rem;
+      margin-top: 12px;
+      background: var(--grafito);
+      border-radius: 8px;
+      padding: 9px 13px;
+      display: inline-block;
+    }
+
+    /* ---------- Entrenamientos ---------- */
+    .lista-entrenos { display: grid; gap: 12px; }
+    .entreno {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: var(--carbon);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radio);
+      padding: 16px 20px;
+    }
+    .entreno .cuando strong { display: block; font-size: 1.02rem; }
+    .entreno .cuando span { color: var(--gris); font-size: .88rem; }
+    .estado-asistencia {
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+    .estado-asistencia.si { background: var(--verde-tenue); color: var(--verde); border: 1px solid rgba(163,255,18,.45); }
+    .estado-asistencia.no { background: rgba(255,92,108,.12); color: var(--rojo); border: 1px solid rgba(255,92,108,.45); }
+
+    /* ---------- Perfil ---------- */
+    .datos-perfil { display: grid; gap: 10px; margin-bottom: 22px; }
+    .dato-perfil {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      background: var(--carbon);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 10px;
+      padding: 13px 17px;
+    }
+    .dato-perfil span { color: var(--gris); font-size: .84rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+    .etiqueta-admin {
+      font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--verde); background: var(--verde-tenue);
+      border: 1px solid rgba(163,255,18,.45); padding: 2px 9px; border-radius: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cinta-demo">
+    🧪 <strong>MODO DEMO:</strong> los datos y las fotos se guardan solo en este navegador, para probar.
+    Cuando se conecte la base de datos real, todo será compartido para el equipo completo.
+  </div>
+
+  <header class="barra">
+    <div class="barra-inner">
+      <a class="barra-marca" href="index.html">
+        <img src="assets/logo-icono.png" alt="" onerror="this.style.display='none'">
+        <span>PORTAL <em>BALL SO HARD</em></span>
+      </a>
+      <div class="barra-acciones oculto" id="barra-sesion">
+        <span class="hola">Hola, <strong id="hola-nombre"></strong></span>
+        <button class="btn btn-borde btn-mini" id="btn-salir" type="button">Salir</button>
+      </div>
+      <div class="barra-acciones" id="barra-visita">
+        <a class="btn btn-borde btn-mini" href="index.html">← Volver al sitio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= VISTA: LOGIN / REGISTRO ================= -->
+  <section id="pantalla-auth">
+    <div class="contenedor">
+      <div class="panel-auth">
+        <img class="logo-centro" src="assets/logo-ballsohard.png" alt="Ball So Hard" onerror="this.style.display='none'">
+        <h1>Portal <em>Ball So Hard</em></h1>
+        <p class="sub">Avisos, torneos, entrenamientos y asistencia — solo para el equipo y la academia.</p>
+
+        <div class="caja">
+          <div class="tabs-auth">
+            <button id="tab-entrar" class="activa" type="button">Iniciar sesión</button>
+            <button id="tab-registro" type="button">Crear mi cuenta</button>
+          </div>
+          <div class="error" id="error-auth"></div>
+
+          <form id="form-entrar">
+            <div class="campo">
+              <label for="entrar-correo">Correo</label>
+              <input type="email" id="entrar-correo" required autocomplete="email" placeholder="tucorreo@ejemplo.com">
+            </div>
+            <div class="campo">
+              <label for="entrar-clave">Contraseña</label>
+              <input type="password" id="entrar-clave" required autocomplete="current-password" placeholder="••••••••">
+            </div>
+            <button class="btn btn-verde" type="submit" style="width:100%">Entrar</button>
+          </form>
+
+          <form id="form-registro" class="oculto">
+            <div class="campo">
+              <label for="reg-nombre">Nombre completo</label>
+              <input type="text" id="reg-nombre" required placeholder="Ej. Diego Ramírez">
+            </div>
+            <div class="fila">
+              <div class="campo">
+                <label for="reg-edad">Edad</label>
+                <input type="number" id="reg-edad" required min="5" max="99" placeholder="Ej. 13">
+              </div>
+              <div class="campo">
+                <label for="reg-categoria">Categoría</label>
+                <select id="reg-categoria">
+                  <option value="Iniciación (6–9)">Iniciación (6–9)</option>
+                  <option value="Formación (10–13)">Formación (10–13)</option>
+                  <option value="Alto rendimiento (14–17)">Alto rendimiento (14–17)</option>
+                  <option value="Equipo elite">Equipo elite</option>
+                </select>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="reg-correo">Correo</label>
+              <input type="email" id="reg-correo" required autocomplete="email" placeholder="tucorreo@ejemplo.com">
+            </div>
+            <div class="campo">
+              <label for="reg-clave">Contraseña (mínimo 6 caracteres)</label>
+              <input type="password" id="reg-clave" required minlength="6" autocomplete="new-password" placeholder="••••••••">
+            </div>
+            <button class="btn btn-verde" type="submit" style="width:100%">Crear cuenta</button>
+          </form>
+
+          <p class="nota-auth">Para probar como <strong>administrador</strong>:<br>
+          correo <strong>admin@ballsohard.mx</strong> · contraseña <strong>bsh123456</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= VISTA: PORTAL ================= -->
+  <section id="pantalla-portal" class="oculto">
+    <div class="contenedor">
+      <div class="tabs-portal" id="tabs-portal">
+        <button data-vista="avisos" class="activa" type="button">📣 Avisos</button>
+        <button data-vista="torneos" type="button">🏆 Torneos</button>
+        <button data-vista="entrenos" type="button">📅 Entrenamientos</button>
+        <button data-vista="galeria" type="button">📸 Galería</button>
+        <button data-vista="perfil" type="button">👤 Mi perfil</button>
+      </div>
+
+      <!-- ---------------- AVISOS ---------------- -->
+      <div class="vista activa" id="vista-avisos">
+        <div class="encabezado-vista"><h2>Avisos y <em>noticias</em></h2></div>
+
+        <div class="caja-admin oculto" id="admin-aviso">
+          <h3>🛡️ Publicar aviso (solo administradores)</h3>
+          <div class="ok" id="ok-aviso"></div>
+          <div class="campo">
+            <label for="aviso-titulo">Título</label>
+            <input type="text" id="aviso-titulo" placeholder="Ej. Cambio de horario del sábado">
+          </div>
+          <div class="campo">
+            <label for="aviso-texto">Mensaje</label>
+            <textarea id="aviso-texto" placeholder="Escribe el aviso completo"></textarea>
+          </div>
+          <div class="campo">
+            <label for="aviso-foto">Foto (opcional)</label>
+            <input type="file" id="aviso-foto" accept="image/*">
+            <p class="ayuda">Se comprime sola antes de guardarse.</p>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+            <button class="btn btn-verde" id="btn-publicar-aviso" type="button">Publicar aviso</button>
+            <button class="btn btn-borde oculto" id="btn-cancelar-aviso" type="button">Cancelar edición</button>
+          </div>
+        </div>
+
+        <div id="lista-avisos"></div>
+      </div>
+
+      <!-- ---------------- TORNEOS ---------------- -->
+      <div class="vista" id="vista-torneos">
+        <div class="encabezado-vista">
+          <h2>Torneos y <em>resultados</em></h2>
+          <span class="hola">Lo que se registre aquí aparece en la página pública</span>
+        </div>
+
+        <div class="caja-admin oculto" id="admin-torneo">
+          <h3>🛡️ Registrar torneo (solo administradores)</h3>
+          <div class="ok" id="ok-torneo"></div>
+          <div class="campo">
+            <label for="torneo-nombre">Nombre del torneo</label>
+            <input type="text" id="torneo-nombre" placeholder="Ej. FIBA Open 3x3 Puebla">
+          </div>
+          <div class="fila">
+            <div class="campo">
+              <label for="torneo-fecha">Fecha</label>
+              <input type="date" id="torneo-fecha">
+            </div>
+            <div class="campo">
+              <label for="torneo-sede">Sede</label>
+              <input type="text" id="torneo-sede" placeholder="Ej. Tec de Monterrey campus Puebla">
+            </div>
+          </div>
+          <div class="fila">
+            <div class="campo">
+              <label for="torneo-categoria">Categoría</label>
+              <select id="torneo-categoria">
+                <option>Elite varonil</option>
+                <option>Elite femenil</option>
+                <option>U18 varonil</option>
+                <option>U18 femenil</option>
+                <option>U14 varonil</option>
+                <option>U14 femenil</option>
+                <option>Otra</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="torneo-resultado">Resultado</label>
+              <select id="torneo-resultado">
+                <option value="campeon">🥇 Campeón</option>
+                <option value="subcampeon">🥈 Subcampeón</option>
+                <option value="tercero">🥉 Tercer lugar</option>
+                <option value="participacion">Participación</option>
+              </select>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="torneo-detalle">Detalle (opcional)</label>
+            <textarea id="torneo-detalle" placeholder="Ej. Final 9-7 sobre Dame Dolla, invictos en todo el torneo"></textarea>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+            <button class="btn btn-verde" id="btn-guardar-torneo" type="button">Guardar torneo</button>
+            <button class="btn btn-borde oculto" id="btn-cancelar-torneo" type="button">Cancelar edición</button>
+          </div>
+        </div>
+
+        <div class="grid-torneos-portal" id="lista-torneos"></div>
+      </div>
+
+      <!-- ---------------- ENTRENAMIENTOS ---------------- -->
+      <div class="vista" id="vista-entrenos">
+        <div class="encabezado-vista">
+          <h2>Entrenamientos <em>de la semana</em></h2>
+          <span class="hola">Marca si vas a asistir</span>
+        </div>
+        <div class="lista-entrenos" id="lista-entrenos"></div>
+      </div>
+
+      <!-- ---------------- GALERÍA ---------------- -->
+      <div class="vista" id="vista-galeria">
+        <div class="encabezado-vista"><h2>Galería <em>del equipo</em></h2></div>
+
+        <div class="caja-admin oculto" id="admin-galeria">
+          <h3>🛡️ Subir fotos (solo administradores)</h3>
+          <div class="ok" id="ok-galeria"></div>
+          <div class="campo">
+            <label for="galeria-archivo">Elige una o varias fotos</label>
+            <input type="file" id="galeria-archivo" accept="image/*" multiple>
+            <p class="ayuda">Se comprimen antes de guardarse. Las fotos que subas aquí salen en la galería de la página pública.</p>
+          </div>
+          <div class="medidor" id="medidor-espacio"></div>
+          <div style="margin: 16px 0 18px"></div>
+        </div>
+
+        <div class="grid-fotos" id="grid-fotos"></div>
+      </div>
+
+      <!-- ---------------- PERFIL ---------------- -->
+      <div class="vista" id="vista-perfil">
+        <div class="encabezado-vista"><h2>Mi <em>perfil</em></h2></div>
+        <div class="datos-perfil" id="datos-perfil"></div>
+        <button class="btn btn-peligro" id="btn-salir-2" type="button">Cerrar sesión</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  'use strict';
+
+  /* ==========================================================================
+     PORTAL BALL SO HARD — versión de prueba
+
+     ⚠️ MODO DEMO: los usuarios, las contraseñas y las fotos se guardan en el
+     navegador (localStorage). Sirve para que el cliente pruebe el flujo
+     completo hoy mismo, NO para operar con datos reales: cualquiera que abra
+     las herramientas del navegador ve las contraseñas.
+
+     Todo el guardado pasa por cargar() y guardar(). Cuando se conecte
+     Firebase, se cambian esas dos funciones y el resto del código no se entera.
+     ========================================================================== */
+
+  const FIREBASE_CONFIG = null;   // ← cuando esto tenga las llaves, deja de ser demo
+  const LLAVE = 'bsh_portal_demo_v1';
+
+  /* Los administradores son una lista de correos. En la versión real esto vive
+     en la base de datos, no en el código. */
+  const CORREOS_ADMIN = ['admin@ballsohard.mx', 'yannick@ballsohard.mx'];
+  const esAdmin = correo => CORREOS_ADMIN.includes((correo || '').toLowerCase());
+
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.prototype.slice.call(document.querySelectorAll(sel));
+
+  /* ---------------- Almacén ---------------- */
+  function cargar() {
+    try {
+      return JSON.parse(localStorage.getItem(LLAVE)) || null;
+    } catch (e) {
+      console.warn('No se pudo leer el almacén:', e);
+      return null;
+    }
+  }
+
+  function guardar(datos) {
+    try {
+      localStorage.setItem(LLAVE, JSON.stringify(datos));
+      return true;
+    } catch (e) {
+      alert('Ya no cabe más información en este navegador (el límite son unos 5 MB).\n' +
+            'Borra algunas fotos de la galería para liberar espacio.');
+      console.warn(e);
+      return false;
+    }
+  }
+
+  function espacioUsadoMB() {
+    const crudo = localStorage.getItem(LLAVE) || '';
+    return (crudo.length / 1048576).toFixed(1);
+  }
+
+  /* ---------------- Datos de arranque ---------------- */
+  function semilla() {
+    return {
+      usuarios: [
+        { nombre: 'Administrador', edad: 30, categoria: 'Equipo elite',
+          correo: 'admin@ballsohard.mx', clave: 'bsh123456' }
+      ],
+      avisos: [
+        { id: 'a1', titulo: 'Arranca la pretemporada',
+          texto: 'Nos vemos el lunes en Flor del Bosque. Traigan balón propio y agua.',
+          foto: '', fecha: Date.now() - 86400000 }
+      ],
+      torneos: [
+        { id: 't1', nombre: 'FIBA Open 3x3 Puebla', fecha: '2026-04-19',
+          sede: 'Tec de Monterrey campus Puebla', categoria: 'Elite varonil',
+          resultado: 'campeon', detalle: 'Final 9-7 sobre Dame Dolla. Invictos en todo el torneo, con 231 equipos participantes.' },
+        { id: 't2', nombre: 'FIBA Open 3x3 Puebla', fecha: '2026-04-19',
+          sede: 'Tec de Monterrey campus Puebla', categoria: 'U18 varonil',
+          resultado: 'campeon', detalle: '' },
+        { id: 't3', nombre: 'FIBA Open 3x3 Puebla', fecha: '2026-04-19',
+          sede: 'Tec de Monterrey campus Puebla', categoria: 'U14 femenil',
+          resultado: 'campeon', detalle: '' },
+        { id: 't4', nombre: 'Quest 3x3', fecha: '2023-11-01', sede: 'Chile',
+          categoria: 'Elite varonil', resultado: 'subcampeon', detalle: 'Subcampeones representando a México.' }
+      ],
+      galeria: [],
+      asistencia: {}
+    };
+  }
+
+  let datos = cargar();
+  if (!datos) {
+    datos = semilla();
+    guardar(datos);
+  }
+  /* Si el almacén viene de una versión anterior, completa lo que falte */
+  ['usuarios', 'avisos', 'torneos', 'galeria'].forEach(function (k) {
+    if (!Array.isArray(datos[k])) datos[k] = [];
+  });
+  if (!datos.asistencia || typeof datos.asistencia !== 'object') datos.asistencia = {};
+
+  let sesion = null;          // usuario dentro de la sesión
+  let editandoAviso = null;   // id del aviso que se está editando
+  let editandoTorneo = null;  // id del torneo que se está editando
+
+  /* ---------------- Utilidades ---------------- */
+  function escapar(t) {
+    return String(t == null ? '' : t)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function conSaltos(t) { return escapar(t).replace(/\n/g, '<br>'); }
+
+  function fechaBonita(ms) {
+    try {
+      return new Date(ms).toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (e) { return ''; }
+  }
+
+  function fechaCortaISO(iso) {
+    if (!iso) return 'Sin fecha';
+    const p = String(iso).split('-');
+    if (p.length !== 3) return escapar(iso);
+    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const mes = meses[Number(p[1]) - 1] || '';
+    return Number(p[2]) + ' de ' + mes + ' ' + p[0];
+  }
+
+  function mostrarMensaje(sel, texto, clase) {
+    const caja = $(sel);
+    if (!caja) return;
+    caja.textContent = texto;
+    caja.classList.add('visible');
+    if (clase === 'ok') {
+      setTimeout(function () { caja.classList.remove('visible'); }, 2600);
+    }
+  }
+
+  /* ---------------- Sesión ---------------- */
+  function registrar(nombre, edad, categoria, correo, clave) {
+    correo = (correo || '').trim().toLowerCase();
+    if (datos.usuarios.some(u => u.correo === correo)) {
+      mostrarMensaje('#error-auth', 'Ese correo ya tiene una cuenta. Inicia sesión.');
+      return false;
+    }
+    datos.usuarios.push({ nombre: nombre.trim(), edad: Number(edad), categoria: categoria, correo: correo, clave: clave });
+    if (!guardar(datos)) return false;
+    sesion = datos.usuarios[datos.usuarios.length - 1];
+    render();
+    return true;
+  }
+
+  function entrar(correo, clave) {
+    correo = (correo || '').trim().toLowerCase();
+    const u = datos.usuarios.find(x => x.correo === correo && x.clave === clave);
+    if (!u) {
+      mostrarMensaje('#error-auth', 'Correo o contraseña incorrectos.');
+      return false;
+    }
+    sesion = u;
+    render();
+    return true;
+  }
+
+  function salir() {
+    sesion = null;
+    render();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ---------------- Render principal ---------------- */
+  function render() {
+    const dentro = !!sesion;
+    $('#pantalla-auth').classList.toggle('oculto', dentro);
+    $('#pantalla-portal').classList.toggle('oculto', !dentro);
+    $('#barra-sesion').classList.toggle('oculto', !dentro);
+    $('#barra-visita').classList.toggle('oculto', dentro);
+    if (!dentro) return;
+
+    $('#hola-nombre').textContent = (sesion.nombre || '').split(' ')[0];
+    const admin = esAdmin(sesion.correo);
+    $('#admin-aviso').classList.toggle('oculto', !admin);
+    $('#admin-torneo').classList.toggle('oculto', !admin);
+    $('#admin-galeria').classList.toggle('oculto', !admin);
+
+    renderAvisos();
+    renderTorneos();
+    renderEntrenos();
+    renderGaleria();
+    renderPerfil();
+  }
+
+  /* ---------------- Avisos ---------------- */
+  function renderAvisos() {
+    const admin = esAdmin(sesion.correo);
+    const caja = $('#lista-avisos');
+    const lista = datos.avisos.slice().sort((a, b) => b.fecha - a.fecha);
+
+    if (!lista.length) {
+      caja.innerHTML = '<div class="vacio">Todavía no hay avisos publicados.</div>';
+      return;
+    }
+
+    caja.innerHTML = lista.map(function (a) {
+      return '<article class="tarjeta">' +
+        '<div class="meta">' + escapar(fechaBonita(a.fecha)) + '</div>' +
+        '<h3>' + escapar(a.titulo) + '</h3>' +
+        '<p>' + conSaltos(a.texto) + '</p>' +
+        (a.foto ? '<img class="foto-aviso" src="' + escapar(a.foto) + '" alt="Foto del aviso: ' + escapar(a.titulo) + '">' : '') +
+        (admin ? '<div class="acciones">' +
+            '<button class="btn btn-borde btn-mini" data-editar-aviso="' + escapar(a.id) + '" type="button">Editar</button>' +
+            '<button class="btn btn-peligro btn-mini" data-borrar-aviso="' + escapar(a.id) + '" type="button">Borrar</button>' +
+          '</div>' : '') +
+        '</article>';
+    }).join('');
+  }
+
+  function limpiarFormAviso() {
+    $('#aviso-titulo').value = '';
+    $('#aviso-texto').value = '';
+    $('#aviso-foto').value = '';
+    editandoAviso = null;
+    $('#btn-publicar-aviso').textContent = 'Publicar aviso';
+    $('#btn-cancelar-aviso').classList.add('oculto');
+  }
+
+  /* ---------------- Torneos ---------------- */
+  const MEDALLAS = {
+    campeon:       { texto: '🥇 Campeón',     oro: true },
+    subcampeon:    { texto: '🥈 Subcampeón',  oro: false },
+    tercero:       { texto: '🥉 Tercer lugar', oro: false },
+    participacion: { texto: 'Participación',  oro: false }
+  };
+
+  function renderTorneos() {
+    const admin = esAdmin(sesion.correo);
+    const caja = $('#lista-torneos');
+    const lista = datos.torneos.slice().sort(function (a, b) {
+      return String(b.fecha || '').localeCompare(String(a.fecha || ''));
+    });
+
+    if (!lista.length) {
+      caja.innerHTML = '<div class="vacio" style="grid-column:1/-1">Todavía no hay torneos registrados.</div>';
+      return;
+    }
+
+    caja.innerHTML = lista.map(function (t) {
+      const m = MEDALLAS[t.resultado] || MEDALLAS.participacion;
+      return '<article class="tarjeta-torneo-p' + (m.oro ? ' oro' : '') + '">' +
+        '<span class="medalla-t' + (m.oro ? ' oro' : '') + '">' + m.texto + '</span>' +
+        '<h3>' + escapar(t.nombre) + '</h3>' +
+        '<div class="datos-t">' +
+          '<span>📅 ' + escapar(fechaCortaISO(t.fecha)) + '</span>' +
+          (t.sede ? '<span>📍 ' + escapar(t.sede) + '</span>' : '') +
+          '<span>🏷️ ' + escapar(t.categoria) + '</span>' +
+          (t.detalle ? '<span style="margin-top:8px">' + conSaltos(t.detalle) + '</span>' : '') +
+        '</div>' +
+        (admin ? '<div class="acciones" style="display:flex;gap:8px;margin-top:14px">' +
+            '<button class="btn btn-borde btn-mini" data-editar-torneo="' + escapar(t.id) + '" type="button">Editar</button>' +
+            '<button class="btn btn-peligro btn-mini" data-borrar-torneo="' + escapar(t.id) + '" type="button">Borrar</button>' +
+          '</div>' : '') +
+        '</article>';
+    }).join('');
+  }
+
+  function limpiarFormTorneo() {
+    $('#torneo-nombre').value = '';
+    $('#torneo-fecha').value = '';
+    $('#torneo-sede').value = '';
+    $('#torneo-detalle').value = '';
+    $('#torneo-categoria').selectedIndex = 0;
+    $('#torneo-resultado').selectedIndex = 0;
+    editandoTorneo = null;
+    $('#btn-guardar-torneo').textContent = 'Guardar torneo';
+    $('#btn-cancelar-torneo').classList.add('oculto');
+  }
+
+  /* ---------------- Fotos ---------------- */
+  function comprimirImagen(archivo, anchoMax) {
+    anchoMax = anchoMax || 1280;
+    return new Promise(function (resolve, reject) {
+      const lector = new FileReader();
+      lector.onerror = function () { reject(new Error('No se pudo leer el archivo')); };
+      lector.onload = function () {
+        const img = new Image();
+        img.onerror = function () { reject(new Error('El archivo no es una imagen válida')); };
+        img.onload = function () {
+          const escala = Math.min(1, anchoMax / img.width);
+          const lienzo = document.createElement('canvas');
+          lienzo.width = Math.round(img.width * escala);
+          lienzo.height = Math.round(img.height * escala);
+          lienzo.getContext('2d').drawImage(img, 0, 0, lienzo.width, lienzo.height);
+          resolve(lienzo.toDataURL('image/jpeg', 0.72));
+        };
+        img.src = lector.result;
+      };
+      lector.readAsDataURL(archivo);
+    });
+  }
+
+  function renderGaleria() {
+    const admin = esAdmin(sesion.correo);
+    const caja = $('#grid-fotos');
+
+    if (!datos.galeria.length) {
+      caja.innerHTML = '<div class="vacio" style="grid-column:1/-1">Todavía no hay fotos en la galería.</div>';
+    } else {
+      caja.innerHTML = datos.galeria.map(function (f, i) {
+        return '<div class="celda-foto">' +
+          '<img src="' + escapar(f.src) + '" alt="' + escapar(f.nombre || ('Foto ' + (i + 1))) + '" loading="lazy">' +
+          (admin ? '<button data-borrar-foto="' + i + '" type="button" aria-label="Quitar foto">Quitar</button>' : '') +
+          '</div>';
+      }).join('');
+    }
+
+    const medidor = $('#medidor-espacio');
+    if (medidor) {
+      medidor.textContent = 'Espacio usado: ' + espacioUsadoMB() + ' MB de ~5 MB · ' +
+        datos.galeria.length + ' foto(s)';
+    }
+  }
+
+  /* ---------------- Entrenamientos ---------------- */
+  const HORARIOS = [
+    { dia: 1, nombre: 'Lunes',     hora: '17:00 – 19:00', grupo: 'Iniciación y Formación' },
+    { dia: 2, nombre: 'Martes',    hora: '18:00 – 20:00', grupo: 'Alto rendimiento' },
+    { dia: 3, nombre: 'Miércoles', hora: '17:00 – 19:00', grupo: 'Iniciación y Formación' },
+    { dia: 4, nombre: 'Jueves',    hora: '18:00 – 20:00', grupo: 'Alto rendimiento' },
+    { dia: 6, nombre: 'Sábado',    hora: '09:00 – 11:00', grupo: 'Todas las categorías' }
+  ];
+
+  function proximaFecha(diaSemana) {
+    const hoy = new Date();
+    const d = new Date(hoy.getFullYear(), hoy.getMonth(), hoy.getDate());
+    const falta = (diaSemana - d.getDay() + 7) % 7;
+    d.setDate(d.getDate() + falta);
+    return d;
+  }
+
+  function claveAsistencia(correo, iso) { return correo + '|' + iso; }
+
+  function renderEntrenos() {
+    const caja = $('#lista-entrenos');
+    caja.innerHTML = HORARIOS.map(function (h) {
+      const fecha = proximaFecha(h.dia);
+      const iso = fecha.getFullYear() + '-' + String(fecha.getMonth() + 1).padStart(2, '0') + '-' + String(fecha.getDate()).padStart(2, '0');
+      const k = claveAsistencia(sesion.correo, iso);
+      const va = datos.asistencia[k];
+      const etiqueta = va === true
+        ? '<span class="estado-asistencia si">Confirmado</span>'
+        : (va === false ? '<span class="estado-asistencia no">No asiste</span>' : '');
+      return '<div class="entreno">' +
+        '<div class="cuando">' +
+          '<strong>' + h.nombre + ' · ' + escapar(h.hora) + '</strong>' +
+          '<span>' + escapar(h.grupo) + ' · Flor del Bosque · ' + escapar(fechaCortaISO(iso)) + '</span>' +
+        '</div>' +
+        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">' +
+          etiqueta +
+          '<button class="btn btn-verde btn-mini" data-asistir="' + iso + '" data-va="si" type="button">Voy</button>' +
+          '<button class="btn btn-borde btn-mini" data-asistir="' + iso + '" data-va="no" type="button">No voy</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* ---------------- Perfil ---------------- */
+  function renderPerfil() {
+    const admin = esAdmin(sesion.correo);
+    $('#datos-perfil').innerHTML =
+      '<div class="dato-perfil"><span>Nombre</span><strong>' + escapar(sesion.nombre) + '</strong></div>' +
+      '<div class="dato-perfil"><span>Correo</span><strong>' + escapar(sesion.correo) + '</strong></div>' +
+      '<div class="dato-perfil"><span>Edad</span><strong>' + escapar(sesion.edad) + '</strong></div>' +
+      '<div class="dato-perfil"><span>Categoría</span><strong>' + escapar(sesion.categoria || 'Sin asignar') + '</strong></div>' +
+      (admin ? '<div class="dato-perfil"><span>Permisos</span><span class="etiqueta-admin">Administrador</span></div>' : '');
+  }
+
+  /* ==========================================================================
+     EVENTOS
+     ========================================================================== */
+
+  /* --- Pestañas de login --- */
+  $('#tab-entrar').addEventListener('click', function () {
+    $('#tab-entrar').classList.add('activa');
+    $('#tab-registro').classList.remove('activa');
+    $('#form-entrar').classList.remove('oculto');
+    $('#form-registro').classList.add('oculto');
+    $('#error-auth').classList.remove('visible');
+  });
+  $('#tab-registro').addEventListener('click', function () {
+    $('#tab-registro').classList.add('activa');
+    $('#tab-entrar').classList.remove('activa');
+    $('#form-registro').classList.remove('oculto');
+    $('#form-entrar').classList.add('oculto');
+    $('#error-auth').classList.remove('visible');
+  });
+
+  $('#form-entrar').addEventListener('submit', function (e) {
+    e.preventDefault();
+    entrar($('#entrar-correo').value, $('#entrar-clave').value);
+  });
+
+  $('#form-registro').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const clave = $('#reg-clave').value;
+    if (clave.length < 6) {
+      mostrarMensaje('#error-auth', 'La contraseña necesita al menos 6 caracteres.');
+      return;
+    }
+    registrar($('#reg-nombre').value, $('#reg-edad').value, $('#reg-categoria').value,
+              $('#reg-correo').value, clave);
+  });
+
+  $('#btn-salir').addEventListener('click', salir);
+  $('#btn-salir-2').addEventListener('click', salir);
+
+  /* --- Pestañas del portal --- */
+  $('#tabs-portal').addEventListener('click', function (e) {
+    const b = e.target.closest('button[data-vista]');
+    if (!b) return;
+    $$('#tabs-portal button').forEach(x => x.classList.remove('activa'));
+    b.classList.add('activa');
+    $$('.vista').forEach(v => v.classList.remove('activa'));
+    $('#vista-' + b.dataset.vista).classList.add('activa');
+  });
+
+  /* --- Avisos --- */
+  $('#btn-publicar-aviso').addEventListener('click', async function () {
+    const titulo = $('#aviso-titulo').value.trim();
+    const texto = $('#aviso-texto').value.trim();
+    if (!titulo || !texto) {
+      alert('El aviso necesita título y mensaje.');
+      return;
+    }
+
+    let foto = '';
+    const archivo = $('#aviso-foto').files[0];
+    if (archivo) {
+      try {
+        foto = await comprimirImagen(archivo, 1100);
+      } catch (err) {
+        alert('No se pudo procesar la foto: ' + err.message);
+        return;
+      }
+    }
+
+    if (editandoAviso) {
+      const a = datos.avisos.find(x => x.id === editandoAviso);
+      if (a) {
+        a.titulo = titulo;
+        a.texto = texto;
+        if (foto) a.foto = foto;
+      }
+    } else {
+      datos.avisos.push({
+        id: 'a' + Date.now().toString(36),
+        titulo: titulo, texto: texto, foto: foto, fecha: Date.now()
+      });
+    }
+
+    if (!guardar(datos)) return;
+    limpiarFormAviso();
+    renderAvisos();
+    mostrarMensaje('#ok-aviso', 'Aviso guardado.', 'ok');
+  });
+
+  $('#btn-cancelar-aviso').addEventListener('click', limpiarFormAviso);
+
+  $('#lista-avisos').addEventListener('click', function (e) {
+    const bEditar = e.target.closest('[data-editar-aviso]');
+    const bBorrar = e.target.closest('[data-borrar-aviso]');
+
+    if (bEditar) {
+      const a = datos.avisos.find(x => x.id === bEditar.dataset.editarAviso);
+      if (!a) return;
+      editandoAviso = a.id;
+      $('#aviso-titulo').value = a.titulo;
+      $('#aviso-texto').value = a.texto;
+      $('#btn-publicar-aviso').textContent = 'Guardar cambios';
+      $('#btn-cancelar-aviso').classList.remove('oculto');
+      $('#admin-aviso').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    if (bBorrar) {
+      if (!confirm('¿Borrar este aviso? No se puede deshacer.')) return;
+      datos.avisos = datos.avisos.filter(x => x.id !== bBorrar.dataset.borrarAviso);
+      if (!guardar(datos)) return;
+      if (editandoAviso === bBorrar.dataset.borrarAviso) limpiarFormAviso();
+      renderAvisos();
+    }
+  });
+
+  /* --- Torneos --- */
+  $('#btn-guardar-torneo').addEventListener('click', function () {
+    const nombre = $('#torneo-nombre').value.trim();
+    if (!nombre) {
+      alert('El torneo necesita nombre.');
+      return;
+    }
+    const registro = {
+      nombre: nombre,
+      fecha: $('#torneo-fecha').value,
+      sede: $('#torneo-sede').value.trim(),
+      categoria: $('#torneo-categoria').value,
+      resultado: $('#torneo-resultado').value,
+      detalle: $('#torneo-detalle').value.trim()
+    };
+
+    if (editandoTorneo) {
+      const t = datos.torneos.find(x => x.id === editandoTorneo);
+      if (t) Object.assign(t, registro);
+    } else {
+      registro.id = 't' + Date.now().toString(36);
+      datos.torneos.push(registro);
+    }
+
+    if (!guardar(datos)) return;
+    limpiarFormTorneo();
+    renderTorneos();
+    mostrarMensaje('#ok-torneo', 'Torneo guardado. Ya aparece en la página pública.', 'ok');
+  });
+
+  $('#btn-cancelar-torneo').addEventListener('click', limpiarFormTorneo);
+
+  $('#lista-torneos').addEventListener('click', function (e) {
+    const bEditar = e.target.closest('[data-editar-torneo]');
+    const bBorrar = e.target.closest('[data-borrar-torneo]');
+
+    if (bEditar) {
+      const t = datos.torneos.find(x => x.id === bEditar.dataset.editarTorneo);
+      if (!t) return;
+      editandoTorneo = t.id;
+      $('#torneo-nombre').value = t.nombre;
+      $('#torneo-fecha').value = t.fecha || '';
+      $('#torneo-sede').value = t.sede || '';
+      $('#torneo-detalle').value = t.detalle || '';
+      $('#torneo-categoria').value = t.categoria;
+      $('#torneo-resultado').value = t.resultado;
+      $('#btn-guardar-torneo').textContent = 'Guardar cambios';
+      $('#btn-cancelar-torneo').classList.remove('oculto');
+      $('#admin-torneo').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    if (bBorrar) {
+      if (!confirm('¿Borrar este torneo? También desaparece de la página pública.')) return;
+      datos.torneos = datos.torneos.filter(x => x.id !== bBorrar.dataset.borrarTorneo);
+      if (!guardar(datos)) return;
+      if (editandoTorneo === bBorrar.dataset.borrarTorneo) limpiarFormTorneo();
+      renderTorneos();
+    }
+  });
+
+  /* --- Galería --- */
+  $('#galeria-archivo').addEventListener('change', async function (e) {
+    const archivos = Array.prototype.slice.call(e.target.files || []);
+    if (!archivos.length) return;
+
+    for (const archivo of archivos) {
+      try {
+        const src = await comprimirImagen(archivo, 1280);
+        datos.galeria.push({ src: src, nombre: archivo.name.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ') });
+      } catch (err) {
+        alert('No se pudo procesar "' + archivo.name + '": ' + err.message);
+      }
+    }
+
+    if (!guardar(datos)) {
+      /* No cupo: se quitan las que se acaban de agregar para no dejar el
+         almacén a medias */
+      datos = cargar() || datos;
+    }
+    e.target.value = '';
+    renderGaleria();
+    mostrarMensaje('#ok-galeria', 'Fotos actualizadas.', 'ok');
+  });
+
+  $('#grid-fotos').addEventListener('click', function (e) {
+    const b = e.target.closest('[data-borrar-foto]');
+    if (!b) return;
+    if (!confirm('¿Quitar esta foto de la galería?')) return;
+    datos.galeria.splice(Number(b.dataset.borrarFoto), 1);
+    if (!guardar(datos)) return;
+    renderGaleria();
+  });
+
+  /* --- Asistencia --- */
+  $('#lista-entrenos').addEventListener('click', function (e) {
+    const b = e.target.closest('[data-asistir]');
+    if (!b) return;
+    datos.asistencia[claveAsistencia(sesion.correo, b.dataset.asistir)] = (b.dataset.va === 'si');
+    if (!guardar(datos)) return;
+    renderEntrenos();
+  });
+
+  /* Arranque */
+  render();
+  </script>
+</body>
+</html>

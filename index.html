@@ -970,6 +970,7 @@
         <li><a href="#palmares">Palmarés</a></li>
         <li><a href="#torneos">Torneos</a></li>
         <li><a href="#galeria">Galería</a></li>
+        <li><a href="portal.html">Portal</a></li>
         <li><a href="#contacto" class="nav-cta">Inscríbete</a></li>
       </ul>
     </div>
@@ -1222,6 +1223,9 @@
         </div>
       </div>
 
+      <!-- Torneos registrados desde el portal (se pintan solos si hay) -->
+      <div id="torneos-portal" class="grid-torneos" style="margin-top:30px"></div>
+
       <div class="linea-tiempo">
         <div class="hito revelar">
           <div class="anio">2021</div>
@@ -1466,6 +1470,7 @@
           <li><a href="#palmares">Palmarés</a></li>
           <li><a href="#torneos">Torneos</a></li>
           <li><a href="#contacto">Contacto</a></li>
+          <li><a href="portal.html">Portal del equipo</a></li>
           <li><a href="https://www.instagram.com/ballsohard_dev/" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </div>
@@ -1513,6 +1518,59 @@
       animables.forEach(function (el) { el.classList.add('visible'); });
     }
 
+    /* ---------- Lo que el portal publica ----------
+       El portal (portal.html) guarda torneos y fotos en el navegador. Si hay
+       algo guardado, la página pública lo muestra. Cuando se conecte Firebase,
+       esta función es la única que cambia. */
+    function leerDelPortal() {
+      try {
+        return JSON.parse(localStorage.getItem('bsh_portal_demo_v1')) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    var delPortal = leerDelPortal();
+
+    var MEDALLAS_PUB = {
+      campeon: '🥇 Campeón',
+      subcampeon: '🥈 Subcampeón',
+      tercero: '🥉 Tercer lugar',
+      participacion: 'Participación'
+    };
+
+    function fechaTorneo(iso) {
+      if (!iso) return '';
+      var p = String(iso).split('-');
+      if (p.length !== 3) return iso;
+      var meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+      return Number(p[2]) + ' de ' + (meses[Number(p[1]) - 1] || '') + ' ' + p[0];
+    }
+
+    (function pintarTorneosDelPortal() {
+      var caja = document.getElementById('torneos-portal');
+      var lista = Array.isArray(delPortal.torneos) ? delPortal.torneos.slice() : [];
+      if (!caja || !lista.length) return;
+
+      lista.sort(function (a, b) { return String(b.fecha || '').localeCompare(String(a.fecha || '')); });
+
+      caja.innerHTML = lista.slice(0, 6).map(function (t) {
+        var tarjeta = document.createElement('div');
+        tarjeta.className = 'tarjeta-torneo';
+        var fecha = document.createElement('span');
+        fecha.className = 'fecha';
+        fecha.textContent = (MEDALLAS_PUB[t.resultado] || '') + ' · ' + (t.categoria || '');
+        var h3 = document.createElement('h3');
+        h3.textContent = t.nombre || '';
+        var p = document.createElement('p');
+        p.textContent = [fechaTorneo(t.fecha), t.sede, t.detalle].filter(Boolean).join(' · ');
+        tarjeta.appendChild(fecha);
+        tarjeta.appendChild(h3);
+        tarjeta.appendChild(p);
+        return tarjeta.outerHTML;
+      }).join('');
+    })();
+
     /* ---------- GALERÍA ----------
        Agrega aquí el nombre de cada archivo que subas a assets/galeria/.
        El nombre del archivo se usa como descripción de la foto, así que
@@ -1531,7 +1589,30 @@
       return archivo.replace(/\.[a-z0-9]+$/i, '').replace(/[-_]+/g, ' ').trim();
     }
 
-    if (FOTOS.length === 0) {
+    var fotosPortal = Array.isArray(delPortal.galeria) ? delPortal.galeria : [];
+
+    fotosPortal.forEach(function (f) {
+      if (!f || !f.src) return;
+      var texto = f.nombre || 'Foto del equipo';
+      var boton = document.createElement('button');
+      boton.className = 'foto-galeria';
+      boton.type = 'button';
+      boton.setAttribute('aria-label', 'Ampliar foto: ' + texto);
+      var img = document.createElement('img');
+      img.src = f.src;
+      img.alt = texto;
+      img.loading = 'lazy';
+      boton.appendChild(img);
+      boton.addEventListener('click', function () {
+        visorImg.src = img.src;
+        visorImg.alt = texto;
+        visor.classList.add('abierto');
+        document.getElementById('visor-cerrar').focus();
+      });
+      grid.appendChild(boton);
+    });
+
+    if (FOTOS.length === 0 && fotosPortal.length === 0) {
       grid.innerHTML =
         '<div class="marco-foto" style="grid-column:1/-1">' +
         '<div class="ph ph-baja"><div class="ph-inner"><span>Sube las fotos a assets/galeria/ y agrégalas a la lista FOTOS</span></div></div>' +

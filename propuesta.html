@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta — Sitio web y portal para Ball So Hard</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --verde:#7AB800; --negro:#111; --gris:#5B6068; --linea:#E2E5E9; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Barlow','Helvetica Neue',Arial,sans-serif;
+    color:var(--negro); background:#F4F5F7; line-height:1.6; padding:28px 16px;
+  }
+  .hoja {
+    max-width:820px; margin:0 auto; background:#fff; padding:52px 56px;
+    box-shadow:0 10px 40px -20px rgba(0,0,0,.35); border-radius:6px;
+  }
+  h1,h2,h3 { font-family:'Archivo Black',Impact,sans-serif; text-transform:uppercase; line-height:1.12; font-weight:400; }
+  h1 { font-size:2.1rem; }
+  h1 em { color:var(--verde); font-style:normal; }
+  h2 { font-size:1.15rem; margin:34px 0 12px; padding-bottom:7px; border-bottom:2px solid var(--verde); }
+  h3 { font-size:.95rem; margin-bottom:4px; }
+  p { margin-bottom:12px; }
+  .encabezado { display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; border-bottom:3px solid var(--negro); padding-bottom:18px; }
+  .para { color:var(--gris); font-size:.9rem; text-align:right; }
+  .para strong { color:var(--negro); display:block; font-size:1rem; }
+  .entrada { color:var(--gris); font-size:1.02rem; margin-top:18px; }
+  ul { margin:0 0 14px 20px; }
+  li { margin-bottom:7px; }
+  table { width:100%; border-collapse:collapse; margin-bottom:14px; font-size:.94rem; }
+  th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--linea); vertical-align:top; }
+  th { background:#F7F9F4; font-size:.76rem; letter-spacing:.1em; text-transform:uppercase; color:var(--gris); }
+  .fase td:first-child { font-weight:800; white-space:nowrap; }
+  .marca-lista { list-style:none; margin-left:0; }
+  .marca-lista li { padding-left:24px; position:relative; }
+  .marca-lista li::before { content:"▸"; position:absolute; left:4px; color:var(--verde); font-weight:800; }
+  .caja-destacada { background:#F7F9F4; border-left:4px solid var(--verde); padding:16px 20px; margin:18px 0; }
+  .precio { display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center; border:2px dashed var(--linea); border-radius:8px; padding:16px 20px; margin-top:10px; }
+  .precio .campo-vacio { font-family:'Archivo Black',Impact,sans-serif; color:#B9BEC6; font-size:1.3rem; }
+  .pie { margin-top:38px; padding-top:16px; border-top:1px solid var(--linea); color:var(--gris); font-size:.85rem; }
+  @media print {
+    body { background:#fff; padding:0; }
+    .hoja { box-shadow:none; padding:0; max-width:none; }
+  }
+</style>
+</head>
+<body>
+<div class="hoja">
+
+  <div class="encabezado">
+    <div>
+      <h1>Sitio web + <em>portal</em></h1>
+      <p style="color:var(--gris);margin:0">Propuesta para Ball So Hard · Baloncesto 3x3 · Puebla</p>
+    </div>
+    <div class="para">
+      Para
+      <strong>Yannick Espinosa</strong>
+      Ball So Hard Development
+    </div>
+  </div>
+
+  <p class="entrada">Ball So Hard organiza los torneos FIBA más grandes de Puebla, tiene academia
+  propia de 6 a 17 años y un palmarés que llega a nivel internacional. Todo eso vive hoy en
+  historias de Instagram que desaparecen en 24 horas. Esta propuesta es para darle a ese trabajo
+  un lugar permanente: una página donde alguien que los busca encuentra los horarios, el palmarés
+  y el formulario para inscribirse, sin depender de que un post siga arriba.</p>
+
+  <h2>1 · Lo que ya está hecho</h2>
+  <p>La página existe y funciona. Puede abrirse hoy mismo desde cualquier celular:</p>
+  <ul class="marca-lista">
+    <li><strong>Portada</strong> con la identidad del equipo y los datos duros: 2021, 6 a 17 años, primer equipo pro de 3x3 de Puebla.</li>
+    <li><strong>Quiénes somos y qué es el 3x3</strong> — la sección que le explica la disciplina a un papá que no la conoce: 10 minutos o 21 puntos, 12 segundos de posesión, canastas de 1 y 2.</li>
+    <li><strong>La academia</strong> — las tres categorías, qué incluye entrenar ahí, la sede en Flor del Bosque con mapa.</li>
+    <li><strong>Palmarés</strong> — la línea de tiempo de 2021 a 2026, del campeonato de la CDMX a los cuatro títulos del FIBA Open Puebla.</li>
+    <li><strong>Torneos que organizan</strong> — Hoop It Up, FIBA Open y el campamento Hard Summer, cada uno con su botón de inscripción.</li>
+    <li><strong>Galería</strong> y <strong>formulario de contacto</strong> que llega directo al WhatsApp del club.</li>
+  </ul>
+
+  <h2>2 · El portal del equipo</h2>
+  <p>Además del sitio público hay un área privada, con cuenta y contraseña, pensada para que la
+  administre el club sin depender de nadie:</p>
+  <table>
+    <tr><th>Sección</th><th>Para qué sirve</th></tr>
+    <tr><td><strong>Avisos</strong></td><td>Publicar cambios de horario o convocatorias, con foto. Los ven todos los inscritos.</td></tr>
+    <tr><td><strong>Torneos</strong></td><td>Registrar cada torneo con fecha, sede, categoría y resultado. <strong>Lo que se registra aquí aparece solo en la página pública</strong>, sin tocar código.</td></tr>
+    <tr><td><strong>Entrenamientos</strong></td><td>La semana de trabajo y confirmación de asistencia por jugador.</td></tr>
+    <tr><td><strong>Galería</strong></td><td>Subir y quitar fotos. Se comprimen solas y salen en la galería del sitio.</td></tr>
+    <tr><td><strong>Perfil</strong></td><td>Los datos del jugador y su categoría.</td></tr>
+  </table>
+
+  <div class="caja-destacada">
+    <h3>Por qué importa lo de los torneos</h3>
+    <p style="margin:0">Es la diferencia entre una página que envejece y una que crece. Cada vez que
+    el equipo gane algo, se captura en el portal en un minuto y el palmarés del sitio se actualiza
+    solo. No hay que llamar a nadie ni pagar por cada cambio.</p>
+  </div>
+
+  <h2>3 · Cómo está construido</h2>
+  <p>Sin plataformas de renta mensual ni constructores de páginas. Es código propio, ligero, que
+  abre en un segundo en cualquier celular y funciona igual en computadora. El alojamiento con
+  certificado de seguridad es gratuito. La única inversión recurrente, si la quieren, es el dominio
+  propio (del tipo <em>ballsohard.mx</em>), que se paga una vez al año directamente al registrador.</p>
+
+  <h2>4 · Fases</h2>
+  <table>
+    <tr><th>Fase</th><th>Qué incluye</th><th>Estado</th></tr>
+    <tr class="fase"><td>1</td><td>Página pública completa, con sus fotos y textos reales</td><td>Hecha (falta su material)</td></tr>
+    <tr class="fase"><td>2</td><td>Portal del equipo con torneos, avisos, asistencia y galería</td><td>Hecho, en versión de prueba</td></tr>
+    <tr class="fase"><td>3</td><td>Editor para cambiar textos y fotos del sitio desde el portal</td><td>Por hacer</td></tr>
+    <tr class="fase"><td>4</td><td>Base de datos real: cuentas de verdad y contenido compartido entre todos</td><td>Por hacer</td></tr>
+  </table>
+  <p style="font-size:.9rem;color:var(--gris)">Las fases 1 y 2 son las que ya pueden ver funcionando.
+  La fase 4 es la que convierte el portal en algo operable con datos reales de los alumnos.</p>
+
+  <h2>5 · Lo que se necesita de Ball So Hard</h2>
+  <ul class="marca-lista">
+    <li>Logo en buena calidad y de 10 a 20 fotos (entrenamientos, torneos, equipo).</li>
+    <li>Horarios y costos de cada categoría.</li>
+    <li>Un correo y el número de WhatsApp al que quieren que lleguen los mensajes del sitio.</li>
+    <li>Autorización para usar el nombre, el escudo y las fotos del club.</li>
+  </ul>
+
+  <h2>6 · Inversión</h2>
+  <div class="precio">
+    <div>
+      <h3 style="margin-bottom:2px">Fases 1 y 2 — sitio público y portal</h3>
+      <span style="color:var(--gris);font-size:.9rem">Entrega, publicación y una ronda de ajustes</span>
+    </div>
+    <span class="campo-vacio">$ ________</span>
+  </div>
+  <div class="precio">
+    <div>
+      <h3 style="margin-bottom:2px">Fases 3 y 4 — editor y base de datos real</h3>
+      <span style="color:var(--gris);font-size:.9rem">Se cotiza aparte, solo si lo quieren</span>
+    </div>
+    <span class="campo-vacio">$ ________</span>
+  </div>
+
+  <div class="pie">
+    Propuesta preparada por <strong>Roberto Linares</strong> · La versión de muestra del sitio está
+    publicada con un aviso visible de que no es oficial y sin aparecer en buscadores, hasta que
+    Ball So Hard lo autorice.
+  </div>
+
+</div>
+</body>
+</html>
